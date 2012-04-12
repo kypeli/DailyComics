@@ -8,6 +8,7 @@ namespace ComicBrowser
 {
     public partial class ComicView : UserControl
     {
+        public string id;
 
         public ComicView()
         {

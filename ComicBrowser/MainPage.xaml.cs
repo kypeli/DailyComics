@@ -15,23 +15,106 @@ using ImageTools.IO.Gif;
 using ImageTools;
 using ImageTools.IO.Png;
 using Microsoft.Phone.Info;
+using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace ComicBrowser
 {
     public partial class MainPage : PhoneApplicationPage
     {
 
-        WebClient wc;
+        WebClient wc = new WebClient();
+        ObservableCollection<ComicView> pivotComicContent = new ObservableCollection<ComicView>();
 
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+            createPivotContent();
+
             ImageTools.IO.Decoders.AddDecoder<GifDecoder>();
             ImageTools.IO.Encoders.AddEncoder<PngEncoder>();
-
-            wc = new WebClient();
         }
+
+        private void createPivotContent()
+        {
+            wc.OpenReadCompleted += ComicsFetchCompleted;
+            wc.OpenReadAsync(new Uri("http://lakka.kapsi.fi:61950/rest/comic/list"));
+        }
+
+        private void ComicsFetchCompleted(object sender, OpenReadCompletedEventArgs e)
+        {
+            wc.OpenReadCompleted -= ComicsFetchCompleted;
+
+            StreamReader s = null;
+            MemoryStream ms;
+            ComicModel model = (ComicModel)e.UserState;
+
+            try
+            {
+                s = new StreamReader((Stream)e.Result);
+                ms = new MemoryStream(Encoding.Unicode.GetBytes(s.ReadToEnd()));
+            }
+            finally
+            {
+                if (s != null)
+                {
+                    s.Close();
+                }
+            }
+
+            // Process JSON to get interesting data.
+            DataContractJsonSerializer jsonparser = new DataContractJsonSerializer(typeof(PivotComicsData));
+            PivotComicsData comics = null;
+            try
+            {
+                comics = (PivotComicsData)jsonparser.ReadObject(ms);
+            }
+            catch (SerializationException)
+            {
+                Debug.WriteLine("Cannot serialize the JSON. Giving up! Json: " + new StreamReader(ms).ReadToEnd());
+                model = null;
+                this.DataContext = null;
+                return;
+            }
+
+            IEnumerator<ComicInfo> enumerator = comics.comics.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                ComicInfo comic = enumerator.Current;
+
+                PivotItem comicPivotItem = new PivotItem();
+                comicPivotItem.Header = comic.name;
+
+                ComicView comicView = new ComicView();
+                comicPivotItem.Content = comicView;
+                comicView.id = comic.comicid;
+                TopPivot.Items.Add(comicPivotItem);
+            }
+
+            if (TopPivot.Items.Count > 0)
+            {
+                TopPivot.SelectedItem = TopPivot.Items[0];
+            }
+        }
+
+        [DataContract]
+        public class PivotComicsData
+        {
+            [DataMember]
+            public IEnumerable<ComicInfo> comics { get; set; }
+        }
+
+        [DataContract]
+        public class ComicInfo 
+        {
+            [DataMember]
+            public String name { get; set; }
+            [DataMember]
+            public String comicid { get; set; }
+        }
+        
+
 
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -43,7 +126,8 @@ namespace ComicBrowser
         private void updatePivotPage(int currentPivot)
         {
             wc.OpenReadCompleted -= HTTPOpenReadCompleted;
-            wc.OpenReadCompleted -= HTTPOpenReadCompleted;
+            TopPivot.SelectedItem = TopPivot.Items[currentPivot];
+            TopPivot.SelectedIndex = currentPivot;
 
             this.DataContext = null;
             if (PhoneApplicationService.Current.State.ContainsKey("model_" + currentPivot))
@@ -72,6 +156,7 @@ namespace ComicBrowser
                 model.ComicLoading = true;
                 try
                 {
+                    Debug.WriteLine("URL: " + comicDataUri.ToString());
                     wc.OpenReadCompleted -= FetchComicReadCompleted;
                     wc.OpenReadCompleted += HTTPOpenReadCompleted;
                     wc.OpenReadAsync(comicDataUri, model);
@@ -89,32 +174,8 @@ namespace ComicBrowser
 
         private Uri getComicDataUri(int pivotIndex)
         {
-            Uri comicUri = null;
-
-            switch (pivotIndex)
-            {
-                case 0:
-                    Debug.WriteLine("Returning URL for Fingerpori.");
-                    comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=fp");
-                    break;
-                case 1:
-                    Debug.WriteLine("Returning URL for Viivi ja Wagner.");
-                    comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=vw");
-                    break;
-                case 2:
-                    Debug.WriteLine("Returning URL for Sinfest.");
-                    comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=sinfest");
-                    break;
-                case 3:
-                    Debug.WriteLine("Returning URL for Dilbert.");
-                    comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=dilbert");
-                    break;
-                case 4:
-                    Debug.WriteLine("Returning URL for User Friendly.");
-                    comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=uf");
-                    break;
-            }
-
+            ComicView currentView = ((TopPivot.Items[TopPivot.SelectedIndex] as PivotItem).Content as ComicView);
+            Uri comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=" + currentView.id); 
             return comicUri;
         }
 
@@ -257,6 +318,11 @@ namespace ComicBrowser
             }
 
             return false;                
+        }
+
+        private void TopPivot_Loaded(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

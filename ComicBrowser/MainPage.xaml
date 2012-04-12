@@ -23,31 +23,7 @@
             <toolkit:PerformanceProgressBar IsIndeterminate="{Binding ComicLoading}" Foreground="Green"/>
 
             <!--Pivot Control-->
-            <controls:Pivot x:Name="TopPivot" Title="Daily Comics" SelectionChanged="Pivot_SelectionChanged">
-                <!--Pivot item for Fingerpori -->
-                <controls:PivotItem Header="Fingerpori">
-                    <comic:ComicView HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" />
-                </controls:PivotItem>
-
-                <!--Pivot item for Viivi ja Wagner-->
-                <controls:PivotItem Header="Viivi &amp; Wagner">
-                    <comic:ComicView HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" />
-                </controls:PivotItem>
-
-                <!--Pivot item for Sinfest-->
-                <controls:PivotItem Header="Sinfest">
-                    <comic:ComicView HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" />
-                </controls:PivotItem>
-
-                <!--Pivot item for Dilbert-->
-                <controls:PivotItem Header="Dilbert">
-                    <comic:ComicView HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" />
-                </controls:PivotItem>
-                
-                <!--Pivot item for User Friendly-->
-                <controls:PivotItem Header="UserFriendly">
-                    <comic:ComicView HorizontalAlignment="Center" VerticalAlignment="Center" DataContext="{Binding}" />
-                </controls:PivotItem>
+            <controls:Pivot x:Name="TopPivot" Title="Daily Comics" SelectionChanged="Pivot_SelectionChanged" Loaded="TopPivot_Loaded">
             </controls:Pivot>
         </StackPanel>
     </Grid>

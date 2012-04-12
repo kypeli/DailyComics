@@ -7,8 +7,7 @@
         <StackPanel>
             <Image x:Name="ComicStrip" Visibility="Visible" Stretch="UniformToFill" />
             <TextBlock x:Name="PubDate" Text="{Binding PubDate}"  HorizontalAlignment="Center" TextAlignment="Center" />
-        </StackPanel>
+        </StackPanel>       
     </Grid>
-    <!-- Source="{Binding ImageSource}"  -->
 </UserControl>
  

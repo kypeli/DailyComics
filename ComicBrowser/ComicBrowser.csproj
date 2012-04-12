@@ -49,19 +49,16 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ImageTools">
-      <HintPath>..\..\..\src\ImageTools 0.30\bin\Phone\ImageTools.dll</HintPath>
+      <HintPath>..\..\..\Users\Kypeli\Documents\src\ImageTools 0.30\bin\Phone\ImageTools.dll</HintPath>
     </Reference>
     <Reference Include="ImageTools.Controls">
-      <HintPath>..\..\..\src\ImageTools 0.30\bin\Phone\ImageTools.Controls.dll</HintPath>
+      <HintPath>..\..\..\Users\Kypeli\Documents\src\ImageTools 0.30\bin\Phone\ImageTools.Controls.dll</HintPath>
     </Reference>
     <Reference Include="ImageTools.IO.Gif">
-      <HintPath>..\..\..\src\ImageTools 0.30\bin\Phone\ImageTools.IO.Gif.dll</HintPath>
+      <HintPath>..\..\..\Users\Kypeli\Documents\src\ImageTools 0.30\bin\Phone\ImageTools.IO.Gif.dll</HintPath>
     </Reference>
     <Reference Include="ImageTools.IO.Png">
-      <HintPath>..\..\..\src\ImageTools 0.30\bin\Phone\ImageTools.IO.Png.dll</HintPath>
-    </Reference>
-    <Reference Include="ImageTools.Utils">
-      <HintPath>..\..\..\src\ImageTools 0.30\bin\Phone\ImageTools.Utils.dll</HintPath>
+      <HintPath>..\..\..\Users\Kypeli\Documents\src\ImageTools 0.30\bin\Phone\ImageTools.IO.Png.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
