@@ -2,41 +2,34 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using System.Runtime.Serialization;
 
 namespace ComicBrowser.ViewModels
 {
+    [DataContract]
     public class ComicModel : INotifyPropertyChanged
     {
 
-        BitmapImage imageSource = null;
-        Boolean comicLoading = false;
-        String pubDate = "";
+        private Boolean comicLoading = false;
+        private String pubDate = "";
 
+        [DataMember]
         public String imageUrl { get; set; }
+
+        [DataMember]
         public int pivotIndex { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public ComicModel() {
-        }
-
-        public BitmapImage ImageSource
+        private void OnPropertyChanged(PropertyChangedEventArgs args)
         {
-            get
+            if (PropertyChanged != null)
             {
-                return imageSource;
-            }
-
-            set
-            {
-                if (value != imageSource)
-                {
-                    imageSource = value;
-                    OnPropertyChanged(new PropertyChangedEventArgs("ImageSource"));
-                }
+                PropertyChanged(this, args);
             }
         }
 
+        [DataMember]
         public Boolean ComicLoading
         {
             get
@@ -54,6 +47,7 @@ namespace ComicBrowser.ViewModels
             }
         }
 
+        [DataMember]
         public String PubDate
         {
             get
@@ -68,14 +62,6 @@ namespace ComicBrowser.ViewModels
                     pubDate = value;
                     OnPropertyChanged(new PropertyChangedEventArgs("PubDate"));
                 }
-            }
-        }
-
-        private void OnPropertyChanged(PropertyChangedEventArgs args)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, args);
             }
         }
 

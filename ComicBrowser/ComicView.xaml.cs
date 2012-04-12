@@ -14,11 +14,5 @@ namespace ComicBrowser
             InitializeComponent();
         }
 
-        private void ComicStrip_ImageOpened(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine("Image opened.");
-
-//            ComicModel model = PhoneApplicationService.Current.State["Model"] as ComicModel;
-        }
     }
 }

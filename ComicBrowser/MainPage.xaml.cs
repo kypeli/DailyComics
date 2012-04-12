@@ -36,22 +36,28 @@ namespace ComicBrowser
         private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int currentPivot = ((Pivot)sender).SelectedIndex;
-            wc.OpenReadCompleted -= HTTPOpenReadCompleted;
-            wc.OpenReadCompleted -= HTTPOpenReadCompleted;
-
             Debug.WriteLine("Pivot changed. Current pivot: " + currentPivot);
+            updatePivotPage(currentPivot);
+        }
+
+        private void updatePivotPage(int currentPivot)
+        {
+            wc.OpenReadCompleted -= HTTPOpenReadCompleted;
+            wc.OpenReadCompleted -= HTTPOpenReadCompleted;
 
             this.DataContext = null;
-
-            // Set the data context of the listbox control to the sample data
-            try
+            if (PhoneApplicationService.Current.State.ContainsKey("model_" + currentPivot))
             {
-                ComicModel model = (ComicModel)PhoneApplicationService.Current.State["model_" + currentPivot];
-                this.DataContext = model;
+                this.DataContext = (ComicModel)PhoneApplicationService.Current.State["model_" + currentPivot];
             }
-            catch (System.Collections.Generic.KeyNotFoundException)
+
+            if (this.DataContext != null)
             {
-                Debug.WriteLine("No cached model found.");
+                Debug.WriteLine("Data model found in cache.");
+            }
+            else
+            {
+                Debug.WriteLine("No cached model found. Fetching new data from the web.");
                 fetchComicDataFromWeb(currentPivot);
             }
         }
@@ -102,6 +108,10 @@ namespace ComicBrowser
                 case 3:
                     Debug.WriteLine("Returning URL for Dilbert.");
                     comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=dilbert");
+                    break;
+                case 4:
+                    Debug.WriteLine("Returning URL for User Friendly.");
+                    comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=uf");
                     break;
             }
 
@@ -225,9 +235,11 @@ namespace ComicBrowser
 
         private void showNewComic(ComicModel currentComicModel, MemoryStream comicBytes)
         {
-            currentComicModel.ImageSource = new BitmapImage();
-            currentComicModel.ImageSource.SetSource(comicBytes);
-            this.DataContext = currentComicModel;
+            ComicView pivotItem = ((TopPivot.SelectedItem as PivotItem).Content as ComicView);
+            BitmapImage comicImage = new BitmapImage();
+            comicImage.SetSource(comicBytes);
+            pivotItem.ComicStrip.Source = comicImage;
+
             PhoneApplicationService.Current.State["model_" + currentComicModel.pivotIndex] = currentComicModel;
         }
 

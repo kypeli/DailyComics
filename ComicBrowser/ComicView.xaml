@@ -2,13 +2,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     >
-    
+
     <Grid x:Name="LayoutRoot">
         <StackPanel>
-            <Image x:Name="ComicStrip" Visibility="Visible" Source="{Binding ImageSource}" ImageOpened="ComicStrip_ImageOpened"/>
+            <Image x:Name="ComicStrip" Visibility="Visible" Stretch="UniformToFill" />
             <TextBlock x:Name="PubDate" Text="{Binding PubDate}"  HorizontalAlignment="Center" TextAlignment="Center" />
         </StackPanel>
     </Grid>
-    
+    <!-- Source="{Binding ImageSource}"  -->
 </UserControl>
  
