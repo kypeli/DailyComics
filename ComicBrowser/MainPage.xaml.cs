@@ -296,7 +296,8 @@ namespace ComicBrowser
 
         private void showNewComic(ComicModel currentComicModel, MemoryStream comicBytes)
         {
-            ComicView pivotItem = ((TopPivot.SelectedItem as PivotItem).Content as ComicView);
+            int forPivotIndex = currentComicModel.pivotIndex;
+            ComicView pivotItem = ((TopPivot.Items[forPivotIndex] as PivotItem).Content as ComicView);
             BitmapImage comicImage = new BitmapImage();
             comicImage.SetSource(comicBytes);
             pivotItem.ComicStrip.Source = comicImage;
