@@ -12,22 +12,16 @@ namespace ComicBrowser.ViewModels
 
         private Boolean comicLoading = false;
         private String pubDate = "";
+        private string comicName;
+        public string ComicId;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         [DataMember]
         public String imageUrl { get; set; }
 
         [DataMember]
         public int pivotIndex { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged(PropertyChangedEventArgs args)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, args);
-            }
-        }
 
         [DataMember]
         public Boolean ComicLoading
@@ -65,7 +59,30 @@ namespace ComicBrowser.ViewModels
             }
         }
 
+        [DataMember]
+        public String ComicName
+        {
+            get
+            {
+                return comicName;
+            }
 
+            set
+            {
+                if (value != comicName)
+                {
+                    comicName = value;
+                    OnPropertyChanged(new PropertyChangedEventArgs("ComicName"));
+                }
+            }
+        }
+
+        private void OnPropertyChanged(PropertyChangedEventArgs args)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, args);
+            }
+        }
     }   
-
 }

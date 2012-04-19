@@ -24,12 +24,21 @@ namespace ComicBrowser
     {
 
         WebClient wc = new WebClient();
-        ObservableCollection<ComicView> pivotComicContent = new ObservableCollection<ComicView>();
+//        ObservableCollection<ComicModel> pivotComicContent = new ObservableCollection<ComicModel>();
 
+        private ObservableCollection<ComicModel> _comicsListModel = new ObservableCollection<ComicModel>();
+        public ObservableCollection<ComicModel> ComicsListModel {
+            get {
+                return _comicsListModel;
+            }
+        }
+        
         // Constructor
         public MainPage()
         {
             InitializeComponent();
+            TopPivot.DataContext = this;
+
             createPivotContent();
 
             ImageTools.IO.Decoders.AddDecoder<GifDecoder>();
@@ -38,6 +47,7 @@ namespace ComicBrowser
 
         private void createPivotContent()
         {
+
             wc.DownloadStringCompleted += ComicsFetchCompleted;
             wc.DownloadStringAsync(new Uri("http://lakka.kapsi.fi:61950/rest/comic/list"));
         }
@@ -45,7 +55,6 @@ namespace ComicBrowser
         private void ComicsFetchCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             wc.DownloadStringCompleted -= ComicsFetchCompleted;
-            ComicModel model = (ComicModel)e.UserState;
 
             // Process JSON to get interesting data.
             DataContractJsonSerializer jsonparser = new DataContractJsonSerializer(typeof(PivotComicsData));
@@ -59,8 +68,6 @@ namespace ComicBrowser
             catch (SerializationException)
             {
                 Debug.WriteLine("Cannot serialize the JSON. Giving up! Json: " + e.Result);
-                model = null;
-                this.DataContext = null;
                 return;
             }
 
@@ -68,20 +75,28 @@ namespace ComicBrowser
             while (enumerator.MoveNext())
             {
                 ComicInfo comic = enumerator.Current;
+                ComicModel model = new ComicModel();
+                
+                model.ComicName = comic.name;
+                model.ComicId = comic.comicid;
+                _comicsListModel.Add(model);
 
-                PivotItem comicPivotItem = new PivotItem();
+                Debug.WriteLine("Got new comic to show. Name: " + comic.name + ", id: " + comic.comicid);
+
+/*                PivotItem comicPivotItem = new PivotItem();
                 comicPivotItem.Header = comic.name;
 
                 ComicView comicView = new ComicView();
                 comicPivotItem.Content = comicView;
                 comicView.id = comic.comicid;
                 TopPivot.Items.Add(comicPivotItem);
+ */
             }
 
-            if (TopPivot.Items.Count > 0)
-            {
-                TopPivot.SelectedItem = TopPivot.Items[0];
-            }
+//            if (TopPivot.Items.Count > 0)
+//            {
+//                TopPivot.SelectedItem = TopPivot.Items[0];
+//            }
         }
 
         [DataContract]
@@ -102,7 +117,7 @@ namespace ComicBrowser
         
 
 
-        private void Pivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void TopPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int currentPivot = ((Pivot)sender).SelectedIndex;
             Debug.WriteLine("Pivot changed. Current pivot: " + currentPivot);
@@ -148,8 +163,6 @@ namespace ComicBrowser
                     wc.OpenReadCompleted -= FetchComicReadCompleted;
                     wc.DownloadStringCompleted += HTTPOpenReadCompleted;
                     wc.DownloadStringAsync(comicDataUri, model);
-
-                    this.DataContext = model;
                 }
                 catch (NotSupportedException)
                 {
@@ -189,7 +202,6 @@ namespace ComicBrowser
             {
                 Debug.WriteLine("Cannot serialize the JSON. Giving up! Json: " + e.Result);
                 model = null;
-                this.DataContext = null;
                 return;
             }
 
@@ -299,11 +311,6 @@ namespace ComicBrowser
             }
 
             return false;                
-        }
-
-        private void TopPivot_Loaded(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }
