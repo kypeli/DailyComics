@@ -233,7 +233,7 @@ namespace ComicBrowser
         void FetchComicReadCompleted(object sender, OpenReadCompletedEventArgs e)
         {
             ComicModel currentComicModel = (ComicModel)e.UserState;
-            Debug.WriteLine("Fetched comic strip image: " + currentComicModel.imageUrl);
+            Debug.WriteLine("Fetched comic strip image.");
 
             Stream reply = null;
             try
