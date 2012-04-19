@@ -38,41 +38,27 @@ namespace ComicBrowser
 
         private void createPivotContent()
         {
-            wc.OpenReadCompleted += ComicsFetchCompleted;
-            wc.OpenReadAsync(new Uri("http://lakka.kapsi.fi:61950/rest/comic/list"));
+            wc.DownloadStringCompleted += ComicsFetchCompleted;
+            wc.DownloadStringAsync(new Uri("http://lakka.kapsi.fi:61950/rest/comic/list"));
         }
 
-        private void ComicsFetchCompleted(object sender, OpenReadCompletedEventArgs e)
+        private void ComicsFetchCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            wc.OpenReadCompleted -= ComicsFetchCompleted;
-
-            StreamReader s = null;
-            MemoryStream ms;
+            wc.DownloadStringCompleted -= ComicsFetchCompleted;
             ComicModel model = (ComicModel)e.UserState;
-
-            try
-            {
-                s = new StreamReader((Stream)e.Result);
-                ms = new MemoryStream(Encoding.Unicode.GetBytes(s.ReadToEnd()));
-            }
-            finally
-            {
-                if (s != null)
-                {
-                    s.Close();
-                }
-            }
 
             // Process JSON to get interesting data.
             DataContractJsonSerializer jsonparser = new DataContractJsonSerializer(typeof(PivotComicsData));
             PivotComicsData comics = null;
             try
             {
-                comics = (PivotComicsData)jsonparser.ReadObject(ms);
+                byte[] jsonArray = Encoding.UTF8.GetBytes(e.Result);
+                MemoryStream jsonStream = new MemoryStream(jsonArray);
+                comics = (PivotComicsData)jsonparser.ReadObject(jsonStream);
             }
             catch (SerializationException)
             {
-                Debug.WriteLine("Cannot serialize the JSON. Giving up! Json: " + new StreamReader(ms).ReadToEnd());
+                Debug.WriteLine("Cannot serialize the JSON. Giving up! Json: " + e.Result);
                 model = null;
                 this.DataContext = null;
                 return;
@@ -125,7 +111,8 @@ namespace ComicBrowser
 
         private void updatePivotPage(int currentPivot)
         {
-            wc.OpenReadCompleted -= HTTPOpenReadCompleted;
+            wc.DownloadStringCompleted -= HTTPOpenReadCompleted;
+
             TopPivot.SelectedItem = TopPivot.Items[currentPivot];
             TopPivot.SelectedIndex = currentPivot;
 
@@ -157,9 +144,10 @@ namespace ComicBrowser
                 try
                 {
                     Debug.WriteLine("URL: " + comicDataUri.ToString());
+                    wc.CancelAsync();
                     wc.OpenReadCompleted -= FetchComicReadCompleted;
-                    wc.OpenReadCompleted += HTTPOpenReadCompleted;
-                    wc.OpenReadAsync(comicDataUri, model);
+                    wc.DownloadStringCompleted += HTTPOpenReadCompleted;
+                    wc.DownloadStringAsync(comicDataUri, model);
 
                     this.DataContext = model;
                 }
@@ -179,35 +167,27 @@ namespace ComicBrowser
             return comicUri;
         }
 
-        void HTTPOpenReadCompleted(object sender, OpenReadCompletedEventArgs e)
+        void HTTPOpenReadCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            StreamReader s = null;
-            MemoryStream ms;
-            ComicModel model = (ComicModel)e.UserState;
+            if (e.Cancelled)
+            {
+                return;
+            }
 
-            try
-            {
-                s = new StreamReader((Stream)e.Result);
-                ms = new MemoryStream(Encoding.Unicode.GetBytes(s.ReadToEnd()));
-            }
-            finally
-            {
-                if (s != null)
-                {
-                    s.Close();
-                }
-            }
+            ComicModel model = (ComicModel)e.UserState;
 
             // Process JSON to get interesting data.
             DataContractJsonSerializer jsonparser = new DataContractJsonSerializer(typeof(ComicData));
             ComicData data = null;
             try
             {
-                data = (ComicData)jsonparser.ReadObject(ms);
+                byte[] jsonBytes = Encoding.UTF8.GetBytes(e.Result);
+                MemoryStream jsonStream = new MemoryStream(jsonBytes);
+                data = (ComicData)jsonparser.ReadObject(jsonStream);
             }
             catch (SerializationException)
             {
-                Debug.WriteLine("Cannot serialize the JSON. Giving up! Json: " + new StreamReader(ms).ReadToEnd());
+                Debug.WriteLine("Cannot serialize the JSON. Giving up! Json: " + e.Result);
                 model = null;
                 this.DataContext = null;
                 return;
@@ -219,7 +199,7 @@ namespace ComicBrowser
             model.imageUrl = data.url;
             model.PubDate = data.pubdate;
 
-            wc.OpenReadCompleted -= HTTPOpenReadCompleted;
+            wc.DownloadStringCompleted -= HTTPOpenReadCompleted;
             wc.OpenReadCompleted += FetchComicReadCompleted;
             wc.OpenReadAsync(new Uri(data.url,
                                      UriKind.Absolute),
