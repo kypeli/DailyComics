@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
 using ComicBrowser.ViewModels;
@@ -14,17 +13,19 @@ using System.Windows.Media.Imaging;
 using ImageTools.IO.Gif;
 using ImageTools;
 using ImageTools.IO.Png;
-using Microsoft.Phone.Info;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ComicBrowser
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class MainPage : PhoneApplicationPage, INotifyPropertyChanged
     {
 
-        WebClient wc = new WebClient();
-//        ObservableCollection<ComicModel> pivotComicContent = new ObservableCollection<ComicModel>();
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private WebClient wc = new WebClient();
+        private bool comicLoading = false;
 
         private ObservableCollection<ComicModel> _comicsListModel = new ObservableCollection<ComicModel>();
         public ObservableCollection<ComicModel> ComicsListModel {
@@ -32,12 +33,31 @@ namespace ComicBrowser
                 return _comicsListModel;
             }
         }
+
+        public Boolean ComicLoading
+        {
+            get
+            {
+                return comicLoading;
+            }
+
+            set
+            {
+                if (value != comicLoading)
+                {
+                    comicLoading = value;
+                    OnPropertyChanged(new PropertyChangedEventArgs("ComicLoading"));
+                }
+            }
+        }
+
         
         // Constructor
         public MainPage()
         {
             InitializeComponent();
             TopPivot.DataContext = this;
+            this.DataContext = this;
 
             createPivotContent();
 
@@ -82,21 +102,12 @@ namespace ComicBrowser
                 _comicsListModel.Add(model);
 
                 Debug.WriteLine("Got new comic to show. Name: " + comic.name + ", id: " + comic.comicid);
-
-/*                PivotItem comicPivotItem = new PivotItem();
-                comicPivotItem.Header = comic.name;
-
-                ComicView comicView = new ComicView();
-                comicPivotItem.Content = comicView;
-                comicView.id = comic.comicid;
-                TopPivot.Items.Add(comicPivotItem);
- */
             }
 
-//            if (TopPivot.Items.Count > 0)
-//            {
-//                TopPivot.SelectedItem = TopPivot.Items[0];
-//            }
+            if (TopPivot.Items.Count > 0)
+            {
+                TopPivot.SelectedItem = TopPivot.Items[0];
+            }
         }
 
         [DataContract]
@@ -114,8 +125,6 @@ namespace ComicBrowser
             [DataMember]
             public String comicid { get; set; }
         }
-        
-
 
         private void TopPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -131,17 +140,7 @@ namespace ComicBrowser
             TopPivot.SelectedItem = TopPivot.Items[currentPivot];
             TopPivot.SelectedIndex = currentPivot;
 
-            this.DataContext = null;
-            if (PhoneApplicationService.Current.State.ContainsKey("model_" + currentPivot))
-            {
-                this.DataContext = (ComicModel)PhoneApplicationService.Current.State["model_" + currentPivot];
-            }
-
-            if (this.DataContext != null)
-            {
-                Debug.WriteLine("Data model found in cache.");
-            }
-            else
+            if (PhoneApplicationService.Current.State.ContainsKey("model_" + currentPivot) == false)
             {
                 Debug.WriteLine("No cached model found. Fetching new data from the web.");
                 fetchComicDataFromWeb(currentPivot);
@@ -153,9 +152,10 @@ namespace ComicBrowser
             Uri comicDataUri = getComicDataUri(forPivotIndex);
             if (comicDataUri != null)
             {
-                ComicModel model = new ComicModel();
+                ComicModel model = _comicsListModel[forPivotIndex];
                 model.pivotIndex = forPivotIndex;
-                model.ComicLoading = true;
+                this.ComicLoading = true;
+
                 try
                 {
                     Debug.WriteLine("URL: " + comicDataUri.ToString());
@@ -175,8 +175,8 @@ namespace ComicBrowser
 
         private Uri getComicDataUri(int pivotIndex)
         {
-            ComicView currentView = ((TopPivot.Items[TopPivot.SelectedIndex] as PivotItem).Content as ComicView);
-            Uri comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=" + currentView.id); 
+            ComicModel model = _comicsListModel[pivotIndex];
+            Uri comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=" + model.ComicId); 
             return comicUri;
         }
 
@@ -235,8 +235,6 @@ namespace ComicBrowser
             ComicModel currentComicModel = (ComicModel)e.UserState;
             Debug.WriteLine("Fetched comic strip image: " + currentComicModel.imageUrl);
 
-            currentComicModel.ComicLoading = false;
-
             Stream reply = null;
             try
             {
@@ -284,16 +282,16 @@ namespace ComicBrowser
                 showNewComic(currentComicModel, comicStripBytes);
             }
 
+            this.ComicLoading = false;
         }
 
         private void showNewComic(ComicModel currentComicModel, MemoryStream comicBytes)
         {
             int forPivotIndex = currentComicModel.pivotIndex;
-            ComicView pivotItem = ((TopPivot.Items[forPivotIndex] as PivotItem).Content as ComicView);
             BitmapImage comicImage = new BitmapImage();
             comicImage.SetSource(comicBytes);
-            pivotItem.ComicStrip.Source = comicImage;
 
+            currentComicModel.ComicImage = comicImage;
             PhoneApplicationService.Current.State["model_" + currentComicModel.pivotIndex] = currentComicModel;
         }
 
@@ -311,6 +309,14 @@ namespace ComicBrowser
             }
 
             return false;                
+        }
+
+        private void OnPropertyChanged(PropertyChangedEventArgs args)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, args);
+            }
         }
     }
 }

@@ -10,9 +10,10 @@ namespace ComicBrowser.ViewModels
     public class ComicModel : INotifyPropertyChanged
     {
 
-        private Boolean comicLoading = false;
         private String pubDate = "";
         private string comicName;
+        private BitmapImage comicImage;
+
         public string ComicId;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -22,24 +23,6 @@ namespace ComicBrowser.ViewModels
 
         [DataMember]
         public int pivotIndex { get; set; }
-
-        [DataMember]
-        public Boolean ComicLoading
-        {
-            get
-            {
-                return comicLoading;
-            }
-
-            set
-            {
-                if (value != comicLoading)
-                {
-                    comicLoading = value;
-                    OnPropertyChanged(new PropertyChangedEventArgs("ComicLoading"));
-                }
-            }
-        }
 
         [DataMember]
         public String PubDate
@@ -73,6 +56,23 @@ namespace ComicBrowser.ViewModels
                 {
                     comicName = value;
                     OnPropertyChanged(new PropertyChangedEventArgs("ComicName"));
+                }
+            }
+        }
+
+        public BitmapImage ComicImage
+        {
+            get
+            {
+                return comicImage;
+            }
+
+            set
+            {
+                if (value != comicImage)
+                {
+                    comicImage = value;
+                    OnPropertyChanged(new PropertyChangedEventArgs("ComicImage"));
                 }
             }
         }

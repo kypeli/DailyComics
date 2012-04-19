@@ -21,7 +21,7 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <StackPanel>
-<!--            <toolkit:PerformanceProgressBar IsIndeterminate="{Binding ComicLoading}" Foreground="Green"/> -->
+            <toolkit:PerformanceProgressBar IsIndeterminate="{Binding ComicLoading}" Foreground="Green"/> 
             <controls:Pivot x:Name="TopPivot" Title="Daily Comics" ItemsSource="{Binding ComicsListModel}" Height="762" SelectionChanged="TopPivot_SelectionChanged">
                 <controls:Pivot.HeaderTemplate>
                     <DataTemplate>
@@ -32,7 +32,7 @@
                     <DataTemplate>
                         <Grid x:Name="LayoutRoot">
                             <StackPanel>
-                                <Image x:Name="ComicStrip" Visibility="Visible" Stretch="UniformToFill" />
+                                <Image x:Name="ComicStrip" Source="{Binding ComicImage}" Visibility="Visible" Stretch="UniformToFill" />
                                 <TextBlock x:Name="PubDate" Text="{Binding PubDate}"  HorizontalAlignment="Center" TextAlignment="Center" />
                             </StackPanel>
                         </Grid>
