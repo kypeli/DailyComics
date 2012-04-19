@@ -10,7 +10,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:comic="clr-namespace:ComicBrowser"
 
-    mc:Ignorable="d" d:DesignWidth="811" d:DesignHeight="768" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" 
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -23,7 +23,7 @@
             <toolkit:PerformanceProgressBar IsIndeterminate="{Binding ComicLoading}" Foreground="Green"/>
 
             <!--Pivot Control-->
-            <controls:Pivot x:Name="TopPivot" Title="Daily Comics" SelectionChanged="Pivot_SelectionChanged" Loaded="TopPivot_Loaded">
+            <controls:Pivot x:Name="TopPivot" Title="Daily Comics" SelectionChanged="Pivot_SelectionChanged" Loaded="TopPivot_Loaded" Height="763">
             </controls:Pivot>
         </StackPanel>
     </Grid>
