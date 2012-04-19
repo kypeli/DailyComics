@@ -51,8 +51,6 @@ namespace ComicBrowser
             }
         }
 
-        
-        // Constructor
         public MainPage()
         {
             InitializeComponent();
@@ -292,7 +290,6 @@ namespace ComicBrowser
             comicImage.SetSource(comicBytes);
 
             currentComicModel.ComicImage = comicImage;
-            PhoneApplicationService.Current.State["model_" + currentComicModel.pivotIndex] = currentComicModel;
         }
 
         private bool isGifImage(byte[] imgBytes)
