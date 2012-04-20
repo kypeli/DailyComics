@@ -66,13 +66,13 @@ namespace ComicBrowser
         private void createPivotContent()
         {
 
-            wc.DownloadStringCompleted += ComicsFetchCompleted;
+            wc.DownloadStringCompleted += ComicListFetchCompleted;
             wc.DownloadStringAsync(new Uri("http://lakka.kapsi.fi:61950/rest/comic/list"));
         }
 
-        private void ComicsFetchCompleted(object sender, DownloadStringCompletedEventArgs e)
+        private void ComicListFetchCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            wc.DownloadStringCompleted -= ComicsFetchCompleted;
+            wc.DownloadStringCompleted -= ComicListFetchCompleted;
 
             // Process JSON to get interesting data.
             DataContractJsonSerializer jsonparser = new DataContractJsonSerializer(typeof(PivotComicsData));
@@ -89,6 +89,7 @@ namespace ComicBrowser
                 return;
             }
 
+            // Populate the model with comic data. 
             IEnumerator<ComicInfo> enumerator = comics.comics.GetEnumerator();
             while (enumerator.MoveNext())
             {
@@ -102,6 +103,7 @@ namespace ComicBrowser
                 Debug.WriteLine("Got new comic to show. Name: " + comic.name + ", id: " + comic.comicid);
             }
 
+            // Activate the first comic after the pivots have been populated.
             if (TopPivot.Items.Count > 0)
             {
                 TopPivot.SelectedItem = TopPivot.Items[0];
@@ -127,18 +129,18 @@ namespace ComicBrowser
         private void TopPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int currentPivot = ((Pivot)sender).SelectedIndex;
-            Debug.WriteLine("Pivot changed. Current pivot: " + currentPivot);
+            Debug.WriteLine("Pivot changed. Current pivot: " + currentPivot.ToString());
             updatePivotPage(currentPivot);
         }
 
         private void updatePivotPage(int currentPivot)
         {
-            wc.DownloadStringCompleted -= HTTPOpenReadCompleted;
+            wc.DownloadStringCompleted -= ComicJSONFetchCompleted;
 
             TopPivot.SelectedItem = TopPivot.Items[currentPivot];
             TopPivot.SelectedIndex = currentPivot;
 
-            if (PhoneApplicationService.Current.State.ContainsKey("model_" + currentPivot) == false)
+            if (PhoneApplicationService.Current.State.ContainsKey("model_" + currentPivot.ToString()) == false)
             {
                 Debug.WriteLine("No cached model found. Fetching new data from the web.");
                 fetchComicDataFromWeb(currentPivot);
@@ -156,10 +158,10 @@ namespace ComicBrowser
 
                 try
                 {
-                    Debug.WriteLine("URL: " + comicDataUri.ToString());
+                    Debug.WriteLine("Fetching comic strip: " + comicDataUri.ToString());
                     wc.CancelAsync();
                     wc.OpenReadCompleted -= FetchComicReadCompleted;
-                    wc.DownloadStringCompleted += HTTPOpenReadCompleted;
+                    wc.DownloadStringCompleted += ComicJSONFetchCompleted;
                     wc.DownloadStringAsync(comicDataUri, model);
                 }
                 catch (NotSupportedException)
@@ -178,7 +180,7 @@ namespace ComicBrowser
             return comicUri;
         }
 
-        void HTTPOpenReadCompleted(object sender, DownloadStringCompletedEventArgs e)
+        void ComicJSONFetchCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             if (e.Cancelled)
             {
@@ -209,7 +211,7 @@ namespace ComicBrowser
             model.imageUrl = data.url;
             model.PubDate = data.pubdate;
 
-            wc.DownloadStringCompleted -= HTTPOpenReadCompleted;
+            wc.DownloadStringCompleted -= ComicJSONFetchCompleted;
             wc.OpenReadCompleted += FetchComicReadCompleted;
             wc.OpenReadAsync(new Uri(data.url,
                                      UriKind.Absolute),
@@ -280,7 +282,7 @@ namespace ComicBrowser
                 showNewComic(currentComicModel, comicStripBytes);
             }
 
-            PhoneApplicationService.Current.State["model_" + currentComicModel.pivotIndex] = currentComicModel;
+            PhoneApplicationService.Current.State["model_" + currentComicModel.pivotIndex.ToString()] = currentComicModel;
             this.ComicLoading = false;
         }
 
