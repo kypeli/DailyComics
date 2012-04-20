@@ -74,6 +74,11 @@ namespace ComicBrowser
         {
             wc.DownloadStringCompleted -= ComicListFetchCompleted;
 
+            if (RESTError(e)) {
+                Debug.WriteLine("Error fetching comic list! Error: " + e.Error.ToString());
+                return;
+            }
+
             // Process JSON to get interesting data.
             DataContractJsonSerializer jsonparser = new DataContractJsonSerializer(typeof(PivotComicsData));
             PivotComicsData comics = null;
@@ -182,8 +187,9 @@ namespace ComicBrowser
 
         void ComicJSONFetchCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            if (e.Cancelled)
+            if (RESTError(e))
             {
+                Debug.WriteLine("Error fetching JSON! Error: " + e.Error.ToString());
                 return;
             }
 
@@ -232,6 +238,12 @@ namespace ComicBrowser
 
         void FetchComicReadCompleted(object sender, OpenReadCompletedEventArgs e)
         {
+            if (RESTError(e))
+            {
+                Debug.WriteLine("Error fetching comic image! Error: " + e.Error.ToString());
+                return;
+            }
+
             ComicModel currentComicModel = (ComicModel)e.UserState;
             Debug.WriteLine("Fetched comic strip image.");
 
@@ -293,6 +305,16 @@ namespace ComicBrowser
             comicImage.SetSource(comicBytes);
 
             currentComicModel.ComicImage = comicImage;
+        }
+
+        private bool RESTError(AsyncCompletedEventArgs e)
+        {
+            if (e.Error != null)
+            {
+                return true;
+            }
+
+            return false;
         }
 
         private bool isGifImage(byte[] imgBytes)
