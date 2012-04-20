@@ -280,6 +280,7 @@ namespace ComicBrowser
                 showNewComic(currentComicModel, comicStripBytes);
             }
 
+            PhoneApplicationService.Current.State["model_" + currentComicModel.pivotIndex] = currentComicModel;
             this.ComicLoading = false;
         }
 
