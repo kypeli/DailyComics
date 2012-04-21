@@ -19,29 +19,30 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-<!--    <Grid x:Name="LayoutRoot" Background="Transparent">
--->
-        <StackPanel>
-            <toolkit:PerformanceProgressBar IsIndeterminate="{Binding ComicLoading}" Foreground="Green"/> 
-            <controls:Pivot x:Name="TopPivot" Title="Daily Comics" ItemsSource="{Binding ComicsListModel}" SelectionChanged="TopPivot_SelectionChanged">
-                <controls:Pivot.HeaderTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding ComicName}"/>
-                    </DataTemplate>
-                </controls:Pivot.HeaderTemplate>
-                <controls:Pivot.ItemTemplate>
-                    <DataTemplate>
-                        <ScrollViewer VerticalScrollBarVisibility="Auto">
-                            <StackPanel>
-                                <Image x:Name="ComicStrip" Source="{Binding ComicImage}" Stretch="UniformToFill" />
-                                <TextBlock x:Name="PubDate" Text="{Binding PubDate}"  HorizontalAlignment="Center" TextAlignment="Center" />
-                            </StackPanel>
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <toolkit:PerformanceProgressBar IsIndeterminate="{Binding ComicLoading}" Foreground="Green" VerticalAlignment="Top" />
+        <controls:Pivot x:Name="TopPivot" Title="Daily Comics" ItemsSource="{Binding ComicsListModel}" SelectionChanged="TopPivot_SelectionChanged">
+            <controls:Pivot.HeaderTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding ComicName}"/>
+                </DataTemplate>
+            </controls:Pivot.HeaderTemplate>
+            <controls:Pivot.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="{Binding PubDate}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" VerticalContentAlignment="Stretch" VerticalAlignment="Top">
+                            <Image x:Name="ComicStrip" Source="{Binding ComicImage}" Stretch="UniformToFill" VerticalAlignment="Top" />
                         </ScrollViewer>
-                    </DataTemplate>
-                </controls:Pivot.ItemTemplate>
-            </controls:Pivot>
-        </StackPanel>
-<!--    </Grid> -->
+                    </Grid>
+                </DataTemplate>
+            </controls:Pivot.ItemTemplate>
+        </controls:Pivot>
+    </Grid>
 
     <!--Sample code showing usage of ApplicationBar-->
     <!--<phone:PhoneApplicationPage.ApplicationBar>
