@@ -340,5 +340,10 @@ namespace ComicBrowser
                 PropertyChanged(this, args);
             }
         }
+
+        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/About.xaml", UriKind.Relative));
+        }
     }
 }
