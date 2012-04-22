@@ -1,0 +1,106 @@
+﻿<phone:PhoneApplicationPage 
+    x:Class="ComicBrowser.AboutPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
+    shell:SystemTray.IsVisible="True">
+	<phone:PhoneApplicationPage.Resources>
+		<Storyboard x:Name="AnimatedTitleText">
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="PageTitle">
+				<EasingDoubleKeyFrame KeyTime="0" Value="8">
+					<EasingDoubleKeyFrame.EasingFunction>
+						<CubicEase EasingMode="EaseOut"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
+				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="74.667">
+					<EasingDoubleKeyFrame.EasingFunction>
+						<CubicEase EasingMode="EaseOut"/>
+					</EasingDoubleKeyFrame.EasingFunction>
+				</EasingDoubleKeyFrame>
+			</DoubleAnimationUsingKeyFrames>
+			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PageTitle">
+				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+			</DoubleAnimationUsingKeyFrames>
+		</Storyboard>
+	</phone:PhoneApplicationPage.Resources>
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--TitlePanel contains the name of the application and page title-->
+        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
+            <TextBlock x:Name="PageTitle" Text="Daily Comics" Margin="10" Style="{StaticResource PhoneTextTitle1Style}" TextAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="White" Opacity="0" Height="104">
+            	<TextBlock.RenderTransform>
+            		<CompositeTransform/>
+            	</TextBlock.RenderTransform>
+            </TextBlock>
+        </StackPanel>
+
+        <!--ContentPanel - place additional content here-->
+        <Grid x:Name="ContentPanel" Grid.Row="1">
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Top" Margin="23,-23,23,0" FontSize="28" Width="434" TextAlignment="Center" Height="53">
+                by Johan Paul
+            </TextBlock>
+            <TextBlock  Height="188" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,36,0,0" FontSize="18" Width="434" TextWrapping="Wrap">
+                <Run Text="Thank you for using the Daily Comics application on your Windows Phone - I hope you enjoy it! The comic strips are updated hourly on the server. If you feel some comic is not included, please feel free to contact me!"/>
+                <LineBreak/>
+                <LineBreak/>
+                <Run Text="This application is licensed under the GPLv3 license. The source code is available at"/>
+            </TextBlock>
+            <RichTextBox IsReadOnly="True" Margin="29,230,18,328">
+                <Paragraph  FontSize="20">
+                    <Hyperlink NavigateUri="https://github.com/kypeli/WPDailyComic" TargetName="_blank">https://github.com/kypeli/WPDailyComic</Hyperlink>
+                </Paragraph>
+            </RichTextBox>
+            <RichTextBox IsReadOnly="True" Height="235" HorizontalAlignment="Left" Margin="29,277,0,87" Name="contactText" VerticalAlignment="Center" Width="433" TextAlignment="Center">
+                <Paragraph FontSize="21" FontWeight="Bold">
+                    Twitter:
+                </Paragraph>
+                <Paragraph FontSize="18">
+                    <Hyperlink NavigateUri="http://twitter.com/kypeli" TargetName="_blank">@kypeli</Hyperlink>
+                </Paragraph>
+                <Paragraph FontSize="21" FontWeight="Bold">
+                    <LineBreak/>
+                    Email:
+                </Paragraph>
+                <Paragraph FontSize="18">
+                    <Hyperlink NavigateUri="mailto:johan@paul.fi" TargetName="_blank">johan@paul.fi</Hyperlink>
+                </Paragraph>
+                <Paragraph FontSize="21" FontWeight="Bold">
+                    <LineBreak/>
+                    Blog:
+                </Paragraph>
+                <Paragraph FontSize="21">
+                    <Hyperlink NavigateUri="http://www.johanpaul.com/blog/" TargetName="_blank">http://www.johanpaul.com/blog/</Hyperlink>
+                </Paragraph>
+            </RichTextBox>
+            <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="92,0,90,23" Content="Rate and review" Click="Button_Click" FontSize="24" Height="Auto" Width="298" />
+        </Grid> 
+    </Grid>
+ 
+    <!--Sample code showing usage of ApplicationBar-->
+    <!--<phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button1.png" Text="Button 1"/>
+            <shell:ApplicationBarIconButton IconUri="/Images/appbar_button2.png" Text="Button 2"/>
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
+                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
+            </shell:ApplicationBar.MenuItems>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>-->
+
+</phone:PhoneApplicationPage>
