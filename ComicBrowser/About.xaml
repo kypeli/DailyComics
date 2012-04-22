@@ -55,17 +55,17 @@
                 by Johan Paul
             </TextBlock>
             <TextBlock  Height="188" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="28,36,0,0" FontSize="18" Width="434" TextWrapping="Wrap">
-                <Run Text="Thank you for using the Daily Comics application on your Windows Phone - I hope you enjoy it! The comic strips are updated hourly on the server. If you feel some comic is not included, please feel free to contact me!"/>
+                <Run Text="Thank you for using the Daily Comics application - I hope you are enjoying it! The comic data is updated hourly on the server. If you feel some comic is missing, please feel free to contact me!"/>
                 <LineBreak/>
                 <LineBreak/>
                 <Run Text="This application is licensed under the BSD license. The source code is available at"/>
             </TextBlock>
-            <RichTextBox IsReadOnly="True" Margin="29,230,18,328">
+            <RichTextBox IsReadOnly="True" Margin="29,217,18,341" TextAlignment="Center">
                 <Paragraph  FontSize="20">
                     <Hyperlink NavigateUri="https://github.com/kypeli/WPDailyComic" TargetName="_blank">https://github.com/kypeli/WPDailyComic</Hyperlink>
                 </Paragraph>
             </RichTextBox>
-            <RichTextBox IsReadOnly="True" Height="235" HorizontalAlignment="Left" Margin="29,277,0,87" Name="contactText" VerticalAlignment="Center" Width="433" TextAlignment="Center">
+            <RichTextBox IsReadOnly="True" Height="235" HorizontalAlignment="Left" Margin="29,264,0,100" Name="contactText" VerticalAlignment="Center" Width="433" TextAlignment="Center">
                 <Paragraph FontSize="21" FontWeight="Bold">
                     Twitter:
                 </Paragraph>
@@ -87,7 +87,7 @@
                     <Hyperlink NavigateUri="http://www.johanpaul.com/blog/" TargetName="_blank">http://www.johanpaul.com/blog/</Hyperlink>
                 </Paragraph>
             </RichTextBox>
-            <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="92,0,90,23" Content="Rate and review" Click="Button_Click" FontSize="24" Height="Auto" Width="298" />
+            <Button HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="91,0,91,6" Content="Rate and review" Click="Button_Click" FontSize="24" Height="Auto" Width="298" />
         </Grid> 
     </Grid>
  
