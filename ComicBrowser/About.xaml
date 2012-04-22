@@ -58,7 +58,7 @@
                 <Run Text="Thank you for using the Daily Comics application on your Windows Phone - I hope you enjoy it! The comic strips are updated hourly on the server. If you feel some comic is not included, please feel free to contact me!"/>
                 <LineBreak/>
                 <LineBreak/>
-                <Run Text="This application is licensed under the GPLv3 license. The source code is available at"/>
+                <Run Text="This application is licensed under the BSD license. The source code is available at"/>
             </TextBlock>
             <RichTextBox IsReadOnly="True" Margin="29,230,18,328">
                 <Paragraph  FontSize="20">
