@@ -45,12 +45,10 @@
     </Grid>
 
     <phone:PhoneApplicationPage.ApplicationBar>
-        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False">
-            <shell:ApplicationBarIconButton IconUri="/Images/appbar.questionmark.png" Text="About" Click="ApplicationBarIconButton_Click" />
-<!--            <shell:ApplicationBar.MenuItems>
-                <shell:ApplicationBarMenuItem Text="MenuItem 1"/>
-                <shell:ApplicationBarMenuItem Text="MenuItem 2"/>
-            </shell:ApplicationBar.MenuItems> -->
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="About" IsEnabled="True" Click="ApplicationBarIconButton_Click"/>
+            </shell:ApplicationBar.MenuItems> 
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 
