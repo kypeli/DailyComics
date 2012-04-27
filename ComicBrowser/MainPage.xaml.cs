@@ -50,7 +50,6 @@ namespace ComicBrowser
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private WebClient wc = new WebClient();
         private bool comicLoading = false;
 
         private ObservableCollection<ComicModel> _comicsListModel = new ObservableCollection<ComicModel>();
@@ -82,6 +81,7 @@ namespace ComicBrowser
             InitializeComponent();
             TopPivot.DataContext = this;
             this.DataContext = this;
+            this.ComicLoading = false;
 
             createPivotContent();
 
@@ -92,13 +92,18 @@ namespace ComicBrowser
         private void createPivotContent()
         {
 
+            WebClient wc = new WebClient();
             wc.DownloadStringCompleted += ComicListFetchCompleted;
             wc.DownloadStringAsync(new Uri("http://lakka.kapsi.fi:61950/rest/comic/list"));
         }
 
         private void ComicListFetchCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
-            wc.DownloadStringCompleted -= ComicListFetchCompleted;
+            WebClient wc = sender as WebClient;
+            if (wc != null)
+            {
+                wc = null;
+            }
 
             if (RESTError(e)) {
                 Debug.WriteLine("Error fetching comic list! Error: " + e.Error.ToString());
@@ -166,8 +171,6 @@ namespace ComicBrowser
 
         private void updatePivotPage(int currentPivot)
         {
-            wc.DownloadStringCompleted -= ComicJSONFetchCompleted;
-
             TopPivot.SelectedItem = TopPivot.Items[currentPivot];
             TopPivot.SelectedIndex = currentPivot;
 
@@ -190,14 +193,14 @@ namespace ComicBrowser
                 try
                 {
                     Debug.WriteLine("Fetching comic strip: " + comicDataUri.ToString());
-                    wc.CancelAsync();
-                    wc.OpenReadCompleted -= FetchComicReadCompleted;
-                    wc.DownloadStringCompleted += ComicJSONFetchCompleted;
-                    wc.DownloadStringAsync(comicDataUri, model);
+
+                    WebClient comicDataClient = new WebClient();
+                    comicDataClient.DownloadStringCompleted += ComicJSONFetchCompleted;
+                    comicDataClient.DownloadStringAsync(comicDataUri, model);
                 }
-                catch (NotSupportedException)
+                catch (WebException e)
                 {
-                    Debug.WriteLine("Web access already in progress. Cannot start a new one... cancelling.");
+                    Debug.WriteLine("Web access already in progress. Cannot start a new one... cancelling. Error: " + e.ToString());
                     model = null;
                 }
 
@@ -217,6 +220,13 @@ namespace ComicBrowser
             {
                 Debug.WriteLine("Error fetching JSON! Error: " + e.Error.ToString());
                 return;
+            }
+
+            // Clean the webclient that was created when this request was created.
+            WebClient webClient = sender as WebClient;
+            if (webClient != null)
+            {
+                webClient = null;
             }
 
             ComicModel model = (ComicModel)e.UserState;
@@ -243,7 +253,7 @@ namespace ComicBrowser
             model.imageUrl = data.url;
             model.PubDate = data.pubdate;
 
-            wc.DownloadStringCompleted -= ComicJSONFetchCompleted;
+            WebClient wc = new WebClient();
             wc.OpenReadCompleted += FetchComicReadCompleted;
             wc.OpenReadAsync(new Uri(data.url,
                                      UriKind.Absolute),
@@ -264,6 +274,13 @@ namespace ComicBrowser
 
         void FetchComicReadCompleted(object sender, OpenReadCompletedEventArgs e)
         {
+            // Clean the webclient that was created when this request was created.
+            WebClient webClient = sender as WebClient;
+            if (webClient != null)
+            {
+                webClient = null;
+            }
+            
             if (RESTError(e))
             {
                 Debug.WriteLine("Error fetching comic image! Error: " + e.Error.ToString());
