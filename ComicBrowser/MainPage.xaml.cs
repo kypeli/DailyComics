@@ -24,6 +24,7 @@
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.using System;
  */
+
 using System;
 using System.Windows.Controls;
 using Microsoft.Phone.Controls;
@@ -42,6 +43,7 @@ using ImageTools.IO.Png;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.ComponentModel;
+using Microsoft.Phone.Tasks;
 
 namespace ComicBrowser
 {
@@ -242,6 +244,7 @@ namespace ComicBrowser
             int requestedPivotIndex = model.pivotIndex;
             model.imageUrl = data.url;
             model.PubDate = data.pubdate;
+            model.siteUrl = data.siteurl;
 
             wc.DownloadStringCompleted -= ComicJSONFetchCompleted;
             wc.OpenReadCompleted += FetchComicReadCompleted;
@@ -260,6 +263,8 @@ namespace ComicBrowser
             public String name { get; set; }
             [DataMember]
             public String pubdate { get; set; }
+            [DataMember]
+            public String siteurl { get; set; }
         }
 
         void FetchComicReadCompleted(object sender, OpenReadCompletedEventArgs e)
@@ -370,6 +375,31 @@ namespace ComicBrowser
         private void ApplicationBarIconButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/About.xaml", UriKind.Relative));
+        }
+
+        private void ComicStrip_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            if (comicLoading) {
+                return;
+            }
+
+            ComicModel model = PhoneApplicationService.Current.State["model_" + TopPivot.SelectedIndex.ToString()] as ComicModel;
+            if (model == null)
+            {
+                Debug.WriteLine("Model null!");
+                return;
+            }
+
+            if (model.siteUrl != null && 
+                model.siteUrl.Length == 0) 
+            {
+                Debug.WriteLine("Site URL empty!");
+                return;
+            }
+
+            WebBrowserTask wbTask = new WebBrowserTask();
+            wbTask.Uri = new Uri(model.siteUrl, UriKind.RelativeOrAbsolute);
+            wbTask.Show();
         }
     }
 }

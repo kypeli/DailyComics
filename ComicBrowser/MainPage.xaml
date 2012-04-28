@@ -36,7 +36,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="{Binding PubDate}" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" VerticalContentAlignment="Stretch" VerticalAlignment="Top">
-                            <Image x:Name="ComicStrip" Source="{Binding ComicImage}" Stretch="UniformToFill" VerticalAlignment="Top" />
+                            <Image x:Name="ComicStrip" Source="{Binding ComicImage}" Stretch="UniformToFill" VerticalAlignment="Top" Tap="ComicStrip_Tap" />
                         </ScrollViewer>
                     </Grid>
                 </DataTemplate>

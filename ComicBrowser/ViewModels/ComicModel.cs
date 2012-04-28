@@ -17,6 +17,7 @@ namespace ComicBrowser.ViewModels
         public string ComicId;
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public string siteUrl;
 
         [DataMember]
         public String imageUrl { get; set; }
