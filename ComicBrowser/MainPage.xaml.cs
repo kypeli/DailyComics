@@ -50,16 +50,10 @@ namespace ComicBrowser
     public partial class MainPage : PhoneApplicationPage, INotifyPropertyChanged
     {
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
+        private ComicListModel comicListModel = new ComicListModel();
         private bool comicLoading = false;
 
-        private ObservableCollection<ComicModel> _comicsListModel = new ObservableCollection<ComicModel>();
-        public ObservableCollection<ComicModel> ComicsListModel {
-            get {
-                return _comicsListModel;
-            }
-        }
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public Boolean ComicLoading
         {
@@ -81,8 +75,8 @@ namespace ComicBrowser
         public MainPage()
         {
             InitializeComponent();
-            TopPivot.DataContext = this;
-            this.DataContext = this;
+            TopPivot.DataContext = comicListModel;
+            this.DataContext = comicListModel;
             this.ComicLoading = false;
 
             createPivotContent();
@@ -136,7 +130,7 @@ namespace ComicBrowser
                 
                 model.ComicName = comic.name;
                 model.ComicId = comic.comicid;
-                _comicsListModel.Add(model);
+                comicListModel.addComic(model);
 
                 Debug.WriteLine("Got new comic to show. Name: " + comic.name + ", id: " + comic.comicid);
             }
@@ -188,7 +182,7 @@ namespace ComicBrowser
             Uri comicDataUri = getComicDataUri(forPivotIndex);
             if (comicDataUri != null)
             {
-                ComicModel model = _comicsListModel[forPivotIndex];
+                ComicModel model = comicListModel.getComicModel(forPivotIndex);
                 model.pivotIndex = forPivotIndex;
                 this.ComicLoading = true;
 
@@ -211,7 +205,7 @@ namespace ComicBrowser
 
         private Uri getComicDataUri(int pivotIndex)
         {
-            ComicModel model = _comicsListModel[pivotIndex];
+            ComicModel model = comicListModel.getComicModel(pivotIndex);
             Uri comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=" + model.ComicId); 
             return comicUri;
         }
