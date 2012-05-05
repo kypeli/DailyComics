@@ -12,7 +12,7 @@ namespace ComicBrowser.ViewModels
 
         private String pubDate = "";
         private string comicName;
-        private BitmapImage comicImage;
+        private BitmapImage comicImage = null;
 
         public string ComicId;
 

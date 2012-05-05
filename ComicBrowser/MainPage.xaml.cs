@@ -169,7 +169,7 @@ namespace ComicBrowser
             TopPivot.SelectedItem = TopPivot.Items[currentPivot];
             TopPivot.SelectedIndex = currentPivot;
 
-            if (PhoneApplicationService.Current.State.ContainsKey("model_" + currentPivot.ToString()) == false)
+            if (comicListModel.modelAlreadyFetched(currentPivot) == false)
             {
                 Debug.WriteLine("No cached model found. Fetching new data from the web.");
                 fetchComicDataFromWeb(currentPivot);
@@ -335,7 +335,6 @@ namespace ComicBrowser
                 showNewComic(currentComicModel, comicStripBytes);
             }
 
-            PhoneApplicationService.Current.State["model_" + currentComicModel.pivotIndex.ToString()] = currentComicModel;
             this.ComicLoading = false;
         }
 
@@ -393,7 +392,7 @@ namespace ComicBrowser
                 return;
             }
 
-            ComicModel model = PhoneApplicationService.Current.State["model_" + TopPivot.SelectedIndex.ToString()] as ComicModel;
+            ComicModel model = comicListModel.getComicModel(TopPivot.SelectedIndex);
             if (model == null)
             {
                 Debug.WriteLine("Model null!");

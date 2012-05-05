@@ -30,12 +30,24 @@ namespace ComicBrowser.ViewModels
 
         public ComicModel getComicModel(int pivotIndex)
         {
-            if ((_comicsListModel.Count - 1) > pivotIndex - 1)
+            if ((_comicsListModel.Count - 1) >= pivotIndex)
             {
                 return _comicsListModel[pivotIndex];
             }
 
             return null;
+        }
+
+        public bool modelAlreadyFetched(int pivotIndex)
+        {
+            if (_comicsListModel.Count > pivotIndex
+                && _comicsListModel[pivotIndex] != null
+                && (_comicsListModel[pivotIndex] as ComicModel).ComicImage != null)
+            {
+                return true;
+            }
+
+            return false;
         }
     }
 }
