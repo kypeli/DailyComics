@@ -6,7 +6,6 @@ using System.Runtime.Serialization;
 
 namespace ComicBrowser.ViewModels
 {
-    [DataContract]
     public class ComicModel : INotifyPropertyChanged
     {
 
@@ -19,13 +18,10 @@ namespace ComicBrowser.ViewModels
         public event PropertyChangedEventHandler PropertyChanged;
         public string siteUrl;
 
-        [DataMember]
         public String imageUrl { get; set; }
 
-        [DataMember]
         public int pivotIndex { get; set; }
 
-        [DataMember]
         public String PubDate
         {
             get
@@ -43,7 +39,6 @@ namespace ComicBrowser.ViewModels
             }
         }
 
-        [DataMember]
         public String ComicName
         {
             get
