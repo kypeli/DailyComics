@@ -69,7 +69,7 @@ namespace ComicBrowser
                 if (value != comicLoading)
                 {
                     comicLoading = value;
-                    OnPropertyChanged(new PropertyChangedEventArgs("ComicLoading"));
+                    OnPropertyChanged("ComicLoading");
                 }
             }
         }
@@ -348,14 +348,6 @@ namespace ComicBrowser
             return false;                
         }
 
-        private void OnPropertyChanged(PropertyChangedEventArgs args)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, args);
-            }
-        }
-
         private void ApplicationBarIconButton_Click(object sender, EventArgs e)
         {
             NavigationService.Navigate(new Uri("/About.xaml", UriKind.Relative));
@@ -385,5 +377,16 @@ namespace ComicBrowser
             wbTask.Uri = new Uri(model.siteUrl, UriKind.RelativeOrAbsolute);
             wbTask.Show();
         }
+
+        private void OnPropertyChanged(String argname)
+        {
+
+            PropertyChangedEventArgs args = new PropertyChangedEventArgs(argname);
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, args);
+            }
+        }
+
     }
 }
