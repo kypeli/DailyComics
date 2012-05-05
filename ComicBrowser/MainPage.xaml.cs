@@ -45,6 +45,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Microsoft.Phone.Tasks;
 
+using ComicBrowser.DataModels;
+
 namespace ComicBrowser
 {
     public partial class MainPage : PhoneApplicationPage, INotifyPropertyChanged
@@ -139,22 +141,6 @@ namespace ComicBrowser
             {
                 TopPivot.SelectedItem = TopPivot.Items[0];
             }
-        }
-
-        [DataContract]
-        public class PivotComicsData
-        {
-            [DataMember]
-            public IEnumerable<ComicInfo> comics { get; set; }
-        }
-
-        [DataContract]
-        public class ComicInfo 
-        {
-            [DataMember]
-            public String name { get; set; }
-            [DataMember]
-            public String comicid { get; set; }
         }
 
         private void TopPivot_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -257,18 +243,7 @@ namespace ComicBrowser
                              );
         }
 
-        [DataContractAttribute]
-        public class ComicData
-        {
-            [DataMember]
-            public String url  { get; set; }
-            [DataMember]
-            public String name { get; set; }
-            [DataMember]
-            public String pubdate { get; set; }
-            [DataMember]
-            public String siteurl { get; set; }
-        }
+
 
         void FetchComicReadCompleted(object sender, OpenReadCompletedEventArgs e)
         {
