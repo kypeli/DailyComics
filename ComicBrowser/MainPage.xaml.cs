@@ -75,7 +75,6 @@ namespace ComicBrowser
         public MainPage()
         {
             InitializeComponent();
-            TopPivot.DataContext = comicListModel;
             this.DataContext = comicListModel;
             this.ComicLoading = false;
 
