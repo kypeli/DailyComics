@@ -9,10 +9,11 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace ComicBrowser.ViewModels
 {
-    public class ComicListModel
+    public class ComicListModel : INotifyPropertyChanged
     {
         private ObservableCollection<ComicModel> _comicsListModel = new ObservableCollection<ComicModel>();
         public ObservableCollection<ComicModel> ComicsListModel
@@ -48,6 +49,35 @@ namespace ComicBrowser.ViewModels
             }
 
             return false;
+        }
+
+        private bool comicLoading = false;
+        public Boolean ComicLoading
+        {
+            get
+            {
+                return comicLoading;
+            }
+
+            set
+            {
+                if (value != comicLoading)
+                {
+                    comicLoading = value;
+                    OnPropertyChanged("ComicLoading");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(String argname)
+        {
+
+            PropertyChangedEventArgs args = new PropertyChangedEventArgs(argname);
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, args);
+            }
         }
     }
 }

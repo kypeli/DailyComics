@@ -25,6 +25,8 @@ namespace ComicBrowser
         /// <returns>The root frame of the Phone Application.</returns>
         public PhoneApplicationFrame RootFrame { get; private set; }
 
+        public static ComicListModel comicListModel;
+
         /// <summary>
         /// Constructor for the Application object.
         /// </summary>
@@ -38,6 +40,8 @@ namespace ComicBrowser
 
             // Phone-specific initialization
             InitializePhoneApplication();
+
+            comicListModel = new ComicListModel();
 
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)

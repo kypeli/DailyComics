@@ -49,36 +49,15 @@ using ComicBrowser.DataModels;
 
 namespace ComicBrowser
 {
-    public partial class MainPage : PhoneApplicationPage, INotifyPropertyChanged
+    public partial class MainPage : PhoneApplicationPage
     {
 
-        private ComicListModel comicListModel = new ComicListModel();
-        private bool comicLoading = false;
 
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        public Boolean ComicLoading
-        {
-            get
-            {
-                return comicLoading;
-            }
-
-            set
-            {
-                if (value != comicLoading)
-                {
-                    comicLoading = value;
-                    OnPropertyChanged("ComicLoading");
-                }
-            }
-        }
 
         public MainPage()
         {
             InitializeComponent();
-            this.DataContext = comicListModel;
-            this.ComicLoading = false;
+            this.DataContext = App.comicListModel;
 
             createPivotContent();
 
@@ -131,7 +110,7 @@ namespace ComicBrowser
                 
                 model.ComicName = comic.name;
                 model.ComicId = comic.comicid;
-                comicListModel.addComic(model);
+                App.comicListModel.addComic(model);
 
                 Debug.WriteLine("Got new comic to show. Name: " + comic.name + ", id: " + comic.comicid);
             }
@@ -155,7 +134,7 @@ namespace ComicBrowser
             TopPivot.SelectedItem = TopPivot.Items[currentPivot];
             TopPivot.SelectedIndex = currentPivot;
 
-            if (comicListModel.modelAlreadyFetched(currentPivot) == false)
+            if (App.comicListModel.modelAlreadyFetched(currentPivot) == false)
             {
                 Debug.WriteLine("No cached model found. Fetching new data from the web.");
                 fetchComicDataFromWeb(currentPivot);
@@ -167,9 +146,9 @@ namespace ComicBrowser
             Uri comicDataUri = getComicDataUri(forPivotIndex);
             if (comicDataUri != null)
             {
-                ComicModel model = comicListModel.getComicModel(forPivotIndex);
+                ComicModel model = App.comicListModel.getComicModel(forPivotIndex);
                 model.pivotIndex = forPivotIndex;
-                this.ComicLoading = true;
+                App.comicListModel.ComicLoading = true;
 
                 try
                 {
@@ -190,7 +169,7 @@ namespace ComicBrowser
 
         private Uri getComicDataUri(int pivotIndex)
         {
-            ComicModel model = comicListModel.getComicModel(pivotIndex);
+            ComicModel model = App.comicListModel.getComicModel(pivotIndex);
             Uri comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=" + model.ComicId); 
             return comicUri;
         }
@@ -310,7 +289,7 @@ namespace ComicBrowser
                 showNewComic(currentComicModel, comicStripBytes);
             }
 
-            this.ComicLoading = false;
+            App.comicListModel.ComicLoading = false;
         }
 
         private void showNewComic(ComicModel currentComicModel, MemoryStream comicBytes)
@@ -355,11 +334,11 @@ namespace ComicBrowser
 
         private void ComicStrip_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (comicLoading) {
+            if (App.comicListModel.ComicLoading) {
                 return;
             }
 
-            ComicModel model = comicListModel.getComicModel(TopPivot.SelectedIndex);
+            ComicModel model = App.comicListModel.getComicModel(TopPivot.SelectedIndex);
             if (model == null)
             {
                 Debug.WriteLine("Model null!");
@@ -377,16 +356,5 @@ namespace ComicBrowser
             wbTask.Uri = new Uri(model.siteUrl, UriKind.RelativeOrAbsolute);
             wbTask.Show();
         }
-
-        private void OnPropertyChanged(String argname)
-        {
-
-            PropertyChangedEventArgs args = new PropertyChangedEventArgs(argname);
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, args);
-            }
-        }
-
     }
 }
