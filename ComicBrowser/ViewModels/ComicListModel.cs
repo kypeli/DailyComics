@@ -15,8 +15,8 @@ namespace ComicBrowser.ViewModels
 {
     public class ComicListModel : INotifyPropertyChanged
     {
-        private ObservableCollection<ComicModel> _comicsListModel = new ObservableCollection<ComicModel>();
-        public ObservableCollection<ComicModel> ComicsListModel
+        private ObservableCollection<ComicItem> _comicsListModel = new ObservableCollection<ComicItem>();
+        public ObservableCollection<ComicItem> ComicsListModel
         {
             get
             {
@@ -24,12 +24,12 @@ namespace ComicBrowser.ViewModels
             }
         }
 
-        public void addComic(ComicModel comicModel)
+        public void addComic(ComicItem comicModel)
         {
             _comicsListModel.Add(comicModel);
         }
 
-        public ComicModel getComicModel(int pivotIndex)
+        public ComicItem getComicModel(int pivotIndex)
         {
             if ((_comicsListModel.Count - 1) >= pivotIndex)
             {
@@ -43,7 +43,7 @@ namespace ComicBrowser.ViewModels
         {
             if (_comicsListModel.Count > pivotIndex
                 && _comicsListModel[pivotIndex] != null
-                && (_comicsListModel[pivotIndex] as ComicModel).ComicImage != null)
+                && (_comicsListModel[pivotIndex] as ComicItem).ComicImage != null)
             {
                 return true;
             }

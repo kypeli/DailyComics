@@ -106,7 +106,7 @@ namespace ComicBrowser
             while (enumerator.MoveNext())
             {
                 ComicInfo comic = enumerator.Current;
-                ComicModel model = new ComicModel();
+                ComicItem model = new ComicItem();
                 
                 model.ComicName = comic.name;
                 model.ComicId = comic.comicid;
@@ -146,7 +146,7 @@ namespace ComicBrowser
             Uri comicDataUri = getComicDataUri(forPivotIndex);
             if (comicDataUri != null)
             {
-                ComicModel model = App.comicListModel.getComicModel(forPivotIndex);
+                ComicItem model = App.comicListModel.getComicModel(forPivotIndex);
                 model.pivotIndex = forPivotIndex;
                 App.comicListModel.ComicLoading = true;
 
@@ -169,7 +169,7 @@ namespace ComicBrowser
 
         private Uri getComicDataUri(int pivotIndex)
         {
-            ComicModel model = App.comicListModel.getComicModel(pivotIndex);
+            ComicItem model = App.comicListModel.getComicModel(pivotIndex);
             Uri comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=" + model.ComicId); 
             return comicUri;
         }
@@ -189,7 +189,7 @@ namespace ComicBrowser
                 webClient = null;
             }
 
-            ComicModel model = (ComicModel)e.UserState;
+            ComicItem model = (ComicItem)e.UserState;
 
             // Process JSON to get interesting data.
             DataContractJsonSerializer jsonparser = new DataContractJsonSerializer(typeof(ComicData));
@@ -213,6 +213,13 @@ namespace ComicBrowser
             model.imageUrl = data.url;
             model.PubDate = data.pubdate;
             model.siteUrl = data.siteurl;
+
+            if (String.IsNullOrEmpty(data.url))
+            {
+                Debug.WriteLine("Comic URL is empty, cannot fetch comic!");
+                return;
+                // TODO: Add a broken image indicator...
+            }
 
             WebClient wc = new WebClient();
             wc.OpenReadCompleted += FetchComicReadCompleted;
@@ -239,7 +246,7 @@ namespace ComicBrowser
                 return;
             }
 
-            ComicModel currentComicModel = (ComicModel)e.UserState;
+            ComicItem currentComicModel = (ComicItem)e.UserState;
             Debug.WriteLine("Fetched comic strip image.");
 
             Stream reply = null;
@@ -292,7 +299,7 @@ namespace ComicBrowser
             App.comicListModel.ComicLoading = false;
         }
 
-        private void showNewComic(ComicModel currentComicModel, MemoryStream comicBytes)
+        private void showNewComic(ComicItem currentComicModel, MemoryStream comicBytes)
         {
             int forPivotIndex = currentComicModel.pivotIndex;
             BitmapImage comicImage = new BitmapImage();
@@ -338,7 +345,7 @@ namespace ComicBrowser
                 return;
             }
 
-            ComicModel model = App.comicListModel.getComicModel(TopPivot.SelectedIndex);
+            ComicItem model = App.comicListModel.getComicModel(TopPivot.SelectedIndex);
             if (model == null)
             {
                 Debug.WriteLine("Model null!");
