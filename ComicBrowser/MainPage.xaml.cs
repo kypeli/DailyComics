@@ -51,9 +51,6 @@ namespace ComicBrowser
 {
     public partial class MainPage : PhoneApplicationPage
     {
-
-
-
         public MainPage()
         {
             InitializeComponent();
