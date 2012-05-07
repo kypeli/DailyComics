@@ -73,24 +73,29 @@ namespace ComicBrowser.ViewModels
                                       where item.IsShowing == true
                                       select item;
 
+            /**
+             * If the collection is not empty (i.e. we want to update the view), we need to do
+             * a trick here. It seems the ObservableCollection is not updated if the second LINQ query
+             * is just being associated with it. We need to get the result of the query to a temp variable,
+             * then clean the model and then populate the UI model with the new values.
+             * 
+             * Not sure why this is not working. 
+             * See: http://stackoverflow.com/questions/10481734/observablecollection-not-updated-when-doing-a-second-linq-query
+             */
             ObservableCollection<ComicItem> showingItems = new ObservableCollection<ComicItem>(comicsSelectedInDB);
             if (m_showingComicsListModel != null)
             {
+                // List is being updated.
                 m_showingComicsListModel.Clear();
                 foreach (ComicItem item in showingItems)
                 {
                     m_showingComicsListModel.Add(item);
                 }
-            }
+            }                        
             else
             {
+                // Initial run of the query, so we can use association.
                 m_showingComicsListModel = showingItems;
-            }
-
-            // Execute the query.
-            foreach (ComicItem item in m_showingComicsListModel)
-            {
-                Debug.WriteLine("Comic to show from DB cache: " + item.ComicName + ", showing: " + item.IsShowing);
             }
         }
 
