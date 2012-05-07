@@ -53,11 +53,8 @@ namespace ComicBrowser.ViewModels
 
             set
             {
-                if (m_showingComicsListModel != value)
-                {
-                    m_showingComicsListModel = value;
-                    OnPropertyChanged("ShowingComicsListModel");
-                }
+                m_showingComicsListModel = value;
+                OnPropertyChanged("ShowingComicsListModel");
             }
         }
 
