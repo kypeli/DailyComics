@@ -70,17 +70,7 @@ namespace ComicBrowser.ViewModels
                                       where item.IsShowing == true
                                       select item;
 
-            bool refreshModel = false;
-            if (m_showingComicsListModel != null)
-            {
-                refreshModel = true;
-            }
-            
-            m_showingComicsListModel = new ObservableCollection<ComicItem>(comicsSelectedInDB);
-            if (refreshModel)
-            {
-                OnPropertyChanged("ShowingComicsListModel");
-            }
+            ShowingComicsListModel = new ObservableCollection<ComicItem>(comicsSelectedInDB);
         }
 
         public void addComic(ComicItem comicItem)
