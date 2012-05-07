@@ -61,10 +61,10 @@ namespace ComicBrowser.ViewModels
         public void refreshComicLists()
         {
 
-            var comicsInDB          = from ComicItem item in comicListDb.Items      
+            var comicsInDB         = from ComicItem item in comicListDb.Items      
                                       select item;
 
-            m_allComicsListModel    = new ObservableCollection<ComicItem>(comicsInDB);
+            AllComicsListModel     = new ObservableCollection<ComicItem>(comicsInDB);
 
             var comicsSelectedInDB = from ComicItem item in comicListDb.Items
                                       where item.IsShowing == true
