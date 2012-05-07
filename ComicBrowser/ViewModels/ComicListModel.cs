@@ -22,28 +22,43 @@ namespace ComicBrowser.ViewModels
         public ComicListModel(string dbString)
         {
             comicListDb = new ComicListContext(dbString);
-            refreshComicList();
+            refreshComicLists();
         }
 
-        private ObservableCollection<ComicItem> _comicsListModel;
-        public ObservableCollection<ComicItem> ComicsListModel
+        private ObservableCollection<ComicItem> m_allComicsListModel;
+        public ObservableCollection<ComicItem> AllComicsListModel
         {
             get
             {
-                return _comicsListModel;
+                return m_allComicsListModel;
             }
         }
 
-        public void refreshComicList()
+        private ObservableCollection<ComicItem> m_showingComicsListModel;
+        public ObservableCollection<ComicItem> ShowingComicsListModel
         {
-            var comicsSelectedInDB = from ComicItem item in comicListDb.Items
-                                     where item.IsShowing == true
-                                     select item;
+            get
+            {
+                return m_showingComicsListModel;
+            }
+        }
 
-            _comicsListModel = new ObservableCollection<ComicItem>(comicsSelectedInDB);
+        public void refreshComicLists()
+        {
+            var comicsInDB          = from ComicItem item in comicListDb.Items      
+                                      select item;
+
+            m_allComicsListModel    = new ObservableCollection<ComicItem>(comicsInDB);
+
+            
+            var comicsSelectedInDB  = from ComicItem item in comicListDb.Items
+                                      where item.IsShowing == true
+                                      select item;
+
+            m_showingComicsListModel = new ObservableCollection<ComicItem>(comicsSelectedInDB);
 
             // Execute the query.
-            foreach (ComicItem item in _comicsListModel)
+            foreach (ComicItem item in m_showingComicsListModel)
             {
                 Debug.WriteLine("Comic to show from DB cache: " + item.ComicName);
             }
@@ -52,7 +67,7 @@ namespace ComicBrowser.ViewModels
         public void addComic(ComicItem comicItem)
         {
             bool itemFound = false;
-            foreach (ComicItem item in _comicsListModel) 
+            foreach (ComicItem item in m_showingComicsListModel) 
             {
                 if (item.ComicId == comicItem.ComicId)
                 {
@@ -70,16 +85,16 @@ namespace ComicBrowser.ViewModels
                 comicListDb.SubmitChanges();
 
                 // And also immediately to the screen.
-                _comicsListModel.Add(comicItem);
+                m_showingComicsListModel.Add(comicItem);
             }
 
         }
 
         public ComicItem getComicModel(int pivotIndex)
         {
-            if ((_comicsListModel.Count - 1) >= pivotIndex)
+            if ((m_showingComicsListModel.Count - 1) >= pivotIndex)
             {
-                return _comicsListModel[pivotIndex];
+                return m_showingComicsListModel[pivotIndex];
             }
 
             return null;
@@ -87,9 +102,9 @@ namespace ComicBrowser.ViewModels
 
         public bool modelAlreadyFetched(int pivotIndex)
         {
-            if (_comicsListModel.Count > pivotIndex
-                && _comicsListModel[pivotIndex] != null
-                && (_comicsListModel[pivotIndex] as ComicItem).ComicImage != null)
+            if (m_showingComicsListModel.Count > pivotIndex
+                && m_showingComicsListModel[pivotIndex] != null
+                && (m_showingComicsListModel[pivotIndex] as ComicItem).ComicImage != null)
             {
                 return true;
             }

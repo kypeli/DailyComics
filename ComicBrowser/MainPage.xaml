@@ -11,7 +11,7 @@
     xmlns:comic="clr-namespace:ComicBrowser"
     xmlns:comicmodels="clr-namespace:ComicBrowser.ViewModels"
 
-    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="768" 
+    mc:Ignorable="d" d:DesignWidth="480" d:DesignHeight="696" 
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -21,7 +21,7 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <toolkit:PerformanceProgressBar IsIndeterminate="{Binding ComicLoading}" Foreground="Green" VerticalAlignment="Top" />
-        <controls:Pivot x:Name="TopPivot" Title="Daily Comics" ItemsSource="{Binding ComicsListModel}" SelectionChanged="TopPivot_SelectionChanged">
+        <controls:Pivot x:Name="TopPivot" Title="Daily Comics" ItemsSource="{Binding ShowingComicsListModel}" SelectionChanged="TopPivot_SelectionChanged">
             <controls:Pivot.HeaderTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding ComicName}"/>
@@ -47,6 +47,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
             <shell:ApplicationBar.MenuItems>
+                <shell:ApplicationBarMenuItem Text="Settings" IsEnabled="True" Click="ApplicationBarMenuItem_Click" />
                 <shell:ApplicationBarMenuItem Text="About" IsEnabled="True" Click="ApplicationBarIconButton_Click"/>
             </shell:ApplicationBar.MenuItems> 
         </shell:ApplicationBar>
