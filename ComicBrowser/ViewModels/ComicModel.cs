@@ -16,13 +16,33 @@ namespace ComicBrowser.ViewModels
         public Table<ComicItem> Items;
     }
 
+    [Table]
     public class ComicItem : INotifyPropertyChanged, INotifyPropertyChanging
     {
         public string siteUrl;
         public String imageUrl { get; set; }
         public int pivotIndex { get; set; }
 
+        // Define ID: private field, public property, and database column.
+        private int _dbId;
+
+        [Column(IsPrimaryKey = true, IsDbGenerated = true, DbType = "INT NOT NULL Identity", CanBeNull = false, AutoSync = AutoSync.OnInsert)]
+        public int ComicDBId
+        {
+            get { return _dbId; }
+            set
+            {
+                if (_dbId != value)
+                {
+                    NotifyPropertyChanging("ComicDBId");
+                    _dbId = value;
+                    OnPropertyChanged(new PropertyChangedEventArgs("ComicDBId"));
+                }
+            }
+        }
+
         private string m_comicId;
+
         [Column]
         public string ComicId
         {
@@ -38,7 +58,8 @@ namespace ComicBrowser.ViewModels
             }
         }
 
-        private bool m_isShowing;
+        private bool m_isShowing = true;
+
         [Column]
         public Boolean IsShowing
         {
@@ -54,6 +75,10 @@ namespace ComicBrowser.ViewModels
             }
         }
 
+        // Version column aids update performance.
+        [Column(IsVersion = true)]
+        private Binary _version;
+        
         private String m_pubDate = "";
         public String PubDate
         {
@@ -73,6 +98,7 @@ namespace ComicBrowser.ViewModels
         }
 
         private string m_comicName = "";
+        [Column]
         public String ComicName
         {
             get
@@ -84,6 +110,7 @@ namespace ComicBrowser.ViewModels
             {
                 if (value != m_comicName)
                 {
+                    NotifyPropertyChanging("ComicName");
                     m_comicName = value;
                     OnPropertyChanged(new PropertyChangedEventArgs("ComicName"));
                 }

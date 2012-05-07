@@ -41,7 +41,20 @@ namespace ComicBrowser
             // Phone-specific initialization
             InitializePhoneApplication();
 
-            comicListModel = new ComicListModel();
+            // Specify the local database connection string.
+            string DBConnectionString = "Data Source=isostore:/Comics.sdf";
+
+            // Create the database if it does not exist.
+            using (ComicListContext db = new ComicListContext(DBConnectionString))
+            {
+                if (db.DatabaseExists() == false)
+                {
+                    // Create the local database.
+                    db.CreateDatabase();
+                }
+            }
+
+            comicListModel = new ComicListModel(DBConnectionString);
 
             // Show graphics profiling information while debugging.
             if (System.Diagnostics.Debugger.IsAttached)

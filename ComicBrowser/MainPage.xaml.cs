@@ -110,9 +110,9 @@ namespace ComicBrowser
                 
                 model.ComicName = comic.name;
                 model.ComicId = comic.comicid;
-                App.comicListModel.addComic(model);
+                Debug.WriteLine("Got comic from server. Name: " + comic.name + ", id: " + comic.comicid);
 
-                Debug.WriteLine("Got new comic to show. Name: " + comic.name + ", id: " + comic.comicid);
+                App.comicListModel.addComic(model);
             }
 
             // Activate the first comic after the pivots have been populated.
