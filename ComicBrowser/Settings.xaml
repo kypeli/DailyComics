@@ -20,8 +20,6 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="100" />
                 </Grid.ColumnDefinitions>
 
                 <CheckBox 
