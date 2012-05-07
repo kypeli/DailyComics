@@ -368,6 +368,5 @@ namespace ComicBrowser
         {
             NavigationService.Navigate(new Uri("/About.xaml", UriKind.Relative));
         }
-
     }
 }
