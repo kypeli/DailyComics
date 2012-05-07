@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using Microsoft.Phone.Controls;
+using System.Diagnostics;
 
 namespace ComicBrowser
 {
@@ -20,5 +21,18 @@ namespace ComicBrowser
             InitializeComponent();
             this.DataContext = App.comicListModel;
         }
+
+        private void CheckBox_Click(object sender, RoutedEventArgs e)
+        {
+            // Save changes to the database.
+            App.comicListModel.SaveChangesToDB();
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            Debug.WriteLine("Refreshing items.");
+            App.comicListModel.refreshComicLists();
+        }
+
     }
 }

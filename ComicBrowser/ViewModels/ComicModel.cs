@@ -97,7 +97,7 @@ namespace ComicBrowser.ViewModels
             }
         }
 
-        private string m_comicName = "";
+        private string m_comicName;
         [Column]
         public String ComicName
         {
@@ -117,7 +117,7 @@ namespace ComicBrowser.ViewModels
             }
         }
 
-        private BitmapImage m_comicImage = null;
+        private BitmapImage m_comicImage;
         public BitmapImage ComicImage
         {
             get

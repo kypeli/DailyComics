@@ -32,6 +32,15 @@ namespace ComicBrowser.ViewModels
             {
                 return m_allComicsListModel;
             }
+
+            set
+            {
+                if (m_allComicsListModel != value)
+                {
+                    m_allComicsListModel = value;
+                    OnPropertyChanged("AllComicsListModel");
+                }
+            }
         }
 
         private ObservableCollection<ComicItem> m_showingComicsListModel;
@@ -41,33 +50,54 @@ namespace ComicBrowser.ViewModels
             {
                 return m_showingComicsListModel;
             }
+
+            set
+            {
+                if (m_showingComicsListModel != value)
+                {
+                    m_showingComicsListModel = value;
+                    OnPropertyChanged("ShowingComicsListModel");
+                }
+            }
         }
 
         public void refreshComicLists()
         {
+
             var comicsInDB          = from ComicItem item in comicListDb.Items      
                                       select item;
 
             m_allComicsListModel    = new ObservableCollection<ComicItem>(comicsInDB);
 
-            
-            var comicsSelectedInDB  = from ComicItem item in comicListDb.Items
+            var comicsSelectedInDB = from ComicItem item in comicListDb.Items
                                       where item.IsShowing == true
                                       select item;
 
-            m_showingComicsListModel = new ObservableCollection<ComicItem>(comicsSelectedInDB);
+            ObservableCollection<ComicItem> showingItems = new ObservableCollection<ComicItem>(comicsSelectedInDB);
+            if (m_showingComicsListModel != null)
+            {
+                m_showingComicsListModel.Clear();
+                foreach (ComicItem item in showingItems)
+                {
+                    m_showingComicsListModel.Add(item);
+                }
+            }
+            else
+            {
+                m_showingComicsListModel = showingItems;
+            }
 
             // Execute the query.
             foreach (ComicItem item in m_showingComicsListModel)
             {
-                Debug.WriteLine("Comic to show from DB cache: " + item.ComicName);
+                Debug.WriteLine("Comic to show from DB cache: " + item.ComicName + ", showing: " + item.IsShowing);
             }
         }
 
         public void addComic(ComicItem comicItem)
         {
             bool itemFound = false;
-            foreach (ComicItem item in m_showingComicsListModel) 
+            foreach (ComicItem item in m_allComicsListModel) 
             {
                 if (item.ComicId == comicItem.ComicId)
                 {
@@ -86,6 +116,7 @@ namespace ComicBrowser.ViewModels
 
                 // And also immediately to the screen.
                 m_showingComicsListModel.Add(comicItem);
+                m_allComicsListModel.Add(comicItem);
             }
 
         }
@@ -139,6 +170,11 @@ namespace ComicBrowser.ViewModels
             {
                 PropertyChanged(this, args);
             }
+        }
+
+        internal void SaveChangesToDB()
+        {
+            comicListDb.SubmitChanges();
         }
     }
 }
