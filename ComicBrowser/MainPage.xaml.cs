@@ -334,11 +334,6 @@ namespace ComicBrowser
             return false;                
         }
 
-        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
-        {
-            NavigationService.Navigate(new Uri("/About.xaml", UriKind.Relative));
-        }
-
         private void ComicStrip_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
             if (App.comicListModel.ComicLoading) {
@@ -363,5 +358,16 @@ namespace ComicBrowser
             wbTask.Uri = new Uri(model.siteUrl, UriKind.RelativeOrAbsolute);
             wbTask.Show();
         }
+
+        private void ApplicationBarMenuItem_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/Settings.xaml", UriKind.Relative));
+        }
+
+        private void ApplicationBarIconButton_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/About.xaml", UriKind.Relative));
+        }
+
     }
 }
