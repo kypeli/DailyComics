@@ -62,30 +62,25 @@ namespace ComicBrowser.ViewModels
         {
 
             var comicsInDB         = from ComicItem item in comicListDb.Items      
-                                      select item;
+                                     select item;
 
             AllComicsListModel     = new ObservableCollection<ComicItem>(comicsInDB);
 
             var comicsSelectedInDB = from ComicItem item in comicListDb.Items
-                                      where item.IsShowing == true
-                                      select item;
+                                     where item.IsShowing == true
+                                     select item;
 
             ShowingComicsListModel = new ObservableCollection<ComicItem>(comicsSelectedInDB);
         }
 
         public void addComic(ComicItem comicItem)
         {
-            bool itemFound = false;
-            foreach (ComicItem item in m_allComicsListModel) 
-            {
-                if (item.ComicId == comicItem.ComicId)
-                {
-                    itemFound = true;
-                    break;
-                }
-            }
+            var comicAlreadyInDB = (from ComicItem item in comicListDb.Items
+                                   where item.ComicId == comicItem.ComicId
+                                   select new { item }).SingleOrDefault();
 
-            if (itemFound == false)
+
+            if (comicAlreadyInDB == null)
             {
                 Debug.WriteLine("Item not found in DB, adding to DB and view model.");
 
