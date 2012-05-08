@@ -61,11 +61,14 @@ namespace ComicBrowser.ViewModels
         public void refreshComicLists()
         {
 
+            // Fetching all comics for the Settings view
             var comicsInDB         = from ComicItem item in comicListDb.Items      
                                      select item;
 
             AllComicsListModel     = new ObservableCollection<ComicItem>(comicsInDB);
 
+            // Fetching all comics that we want to show based on user's settings
+            // to show the comics in the UI. 
             var comicsSelectedInDB = from ComicItem item in comicListDb.Items
                                      where item.IsShowing == true
                                      select item;
@@ -76,8 +79,8 @@ namespace ComicBrowser.ViewModels
         public void addComic(ComicItem comicItem)
         {
             var comicAlreadyInDB = (from ComicItem item in comicListDb.Items
-                                   where item.ComicId == comicItem.ComicId
-                                   select new { item }).SingleOrDefault();
+                                    where item.ComicId == comicItem.ComicId
+                                    select new { item }).SingleOrDefault();
 
 
             if (comicAlreadyInDB == null)
