@@ -128,9 +128,6 @@ namespace ComicBrowser
 
         private void updatePivotPage(int currentPivot)
         {
-            TopPivot.SelectedItem = TopPivot.Items[currentPivot];
-            TopPivot.SelectedIndex = currentPivot;
-
             if (App.comicListModel.modelAlreadyFetched(currentPivot) == false)
             {
                 Debug.WriteLine("No cached model found. Fetching new data from the web.");
@@ -354,6 +351,14 @@ namespace ComicBrowser
             WebBrowserTask wbTask = new WebBrowserTask();
             wbTask.Uri = new Uri(model.siteUrl, UriKind.RelativeOrAbsolute);
             wbTask.Show();
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            Debug.WriteLine("Reloading comics page.");
+
+            int currentPivot = TopPivot.SelectedIndex;
+            updatePivotPage(currentPivot);
         }
 
         private void ApplicationBarMenuItem_Click(object sender, EventArgs e)
