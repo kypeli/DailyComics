@@ -295,7 +295,6 @@ namespace ComicBrowser
 
         private void showNewComic(ComicItem currentComicModel, MemoryStream comicBytes)
         {
-            int forPivotIndex = currentComicModel.pivotIndex;
             BitmapImage comicImage = new BitmapImage();
             comicImage.SetSource(comicBytes);
 
@@ -328,9 +327,18 @@ namespace ComicBrowser
             return false;                
         }
 
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            Debug.WriteLine("Reloading comics page.");
+
+            int currentPivot = TopPivot.SelectedIndex;
+            updatePivotPage(currentPivot);
+        }
+
         private void ComicStrip_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
-            if (App.comicListModel.ComicLoading) {
+            if (App.comicListModel.ComicLoading)
+            {
                 return;
             }
 
@@ -341,34 +349,22 @@ namespace ComicBrowser
                 return;
             }
 
-            if (model.siteUrl != null && 
-                model.siteUrl.Length == 0) 
-            {
-                Debug.WriteLine("Site URL empty!");
-                return;
-            }
+            Debug.WriteLine("TopPivot.SelectedIndex: " + TopPivot.SelectedIndex);
 
-            WebBrowserTask wbTask = new WebBrowserTask();
-            wbTask.Uri = new Uri(model.siteUrl, UriKind.RelativeOrAbsolute);
-            wbTask.Show();
-        }
-
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            Debug.WriteLine("Reloading comics page.");
-
-            int currentPivot = TopPivot.SelectedIndex;
-            updatePivotPage(currentPivot);
+            NavigationService.Navigate(new Uri("/Fullscreen.xaml?comicIndex=" + TopPivot.SelectedIndex.ToString(), 
+                                       UriKind.Relative));
         }
 
         private void ApplicationBarMenuItem_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/Settings.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/Settings.xaml", 
+                                       UriKind.Relative));
         }
 
         private void ApplicationBarIconButton_Click(object sender, EventArgs e)
         {
-            NavigationService.Navigate(new Uri("/About.xaml", UriKind.Relative));
+            NavigationService.Navigate(new Uri("/About.xaml", 
+                                       UriKind.Relative));
         }
     }
 }
