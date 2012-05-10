@@ -332,7 +332,7 @@ namespace ComicBrowser
             Debug.WriteLine("Reloading comics page.");
 
             int currentPivot = TopPivot.SelectedIndex;
-            if (currentPivot > 0)
+            if (currentPivot >= 0)
             {
                 updatePivotPage(currentPivot);
             }
