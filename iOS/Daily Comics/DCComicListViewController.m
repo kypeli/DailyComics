@@ -26,10 +26,16 @@
     if (self) {        
         appDelegate = (DCAppDelegate *)[[UIApplication sharedApplication] delegate];
         
+        // Configure the NavigationController.
+        //  - Title
+        //  - Right will contain an edit button to remove comics from the list.
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+        self.title = @"Comics";
+        
         // Configure toolbar and items.
         UIBarButtonItem  *buttonItem;
         
-        buttonItem = [[ UIBarButtonItem alloc ] initWithTitle: @"Add comics"
+        buttonItem = [[ UIBarButtonItem alloc ] initWithTitle: @"Add removed comics"
                                                         style: UIBarButtonItemStyleBordered
                                                        target: self
                                                        action: @selector( addComic: ) ];
@@ -48,12 +54,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    // Configure the NavigationController.
-    //  - Title
-    //  - Right will contain an edit button to remove comics from the list.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.title = @"Comics";
 
     if (appDelegate.comicsRefreshed == NO) {
         NSLog(@"No comic list cached. Fetching it...");
