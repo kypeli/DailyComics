@@ -1,0 +1,346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		97491CE2157392E800E034A3 /* DCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97491CE0157392E800E034A3 /* DCSettingsViewController.m */; };
+		97491CE3157392E800E034A3 /* DCSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97491CE1157392E800E034A3 /* DCSettingsViewController.xib */; };
+		97526B7D156E08B600B13B0C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97526B7C156E08B600B13B0C /* UIKit.framework */; };
+		97526B7F156E08B600B13B0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97526B7E156E08B600B13B0C /* Foundation.framework */; };
+		97526B81156E08B600B13B0C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97526B80156E08B600B13B0C /* CoreGraphics.framework */; };
+		97526B83156E08B600B13B0C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97526B82156E08B600B13B0C /* CoreData.framework */; };
+		97526B89156E08B600B13B0C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 97526B87156E08B600B13B0C /* InfoPlist.strings */; };
+		97526B8B156E08B600B13B0C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97526B8A156E08B600B13B0C /* main.m */; };
+		97526B8F156E08B700B13B0C /* DCAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97526B8E156E08B700B13B0C /* DCAppDelegate.m */; };
+		97526B92156E08B700B13B0C /* Daily_Comics.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 97526B90156E08B700B13B0C /* Daily_Comics.xcdatamodeld */; };
+		97526B95156E08B700B13B0C /* DCComicListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97526B94156E08B700B13B0C /* DCComicListViewController.m */; };
+		97526B9B156E08B700B13B0C /* DCComicListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97526B99156E08B700B13B0C /* DCComicListViewController.xib */; };
+		97526BA6156E169200B13B0C /* DCComicsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97526BA5156E169200B13B0C /* DCComicsHelper.m */; };
+		9778457D156E4B20005D1936 /* DCComicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9778457B156E4B20005D1936 /* DCComicViewController.m */; };
+		9778457E156E4B20005D1936 /* DCComicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9778457C156E4B20005D1936 /* DCComicViewController.xib */; };
+		978701601575F8C2000D8CA2 /* DCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9787015E1575F8C2000D8CA2 /* DCMainViewController.m */; };
+		978701611575F8C2000D8CA2 /* DCMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9787015F1575F8C2000D8CA2 /* DCMainViewController.xib */; };
+		97DC86131578C28D0080F958 /* ComicStrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 97DC86121578C28D0080F958 /* ComicStrip.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		97491CDF157392E800E034A3 /* DCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCSettingsViewController.h; path = ../DCSettingsViewController.h; sourceTree = "<group>"; };
+		97491CE0157392E800E034A3 /* DCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCSettingsViewController.m; path = ../DCSettingsViewController.m; sourceTree = "<group>"; };
+		97491CE1157392E800E034A3 /* DCSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DCSettingsViewController.xib; path = ../DCSettingsViewController.xib; sourceTree = "<group>"; };
+		97526B78156E08B600B13B0C /* Daily Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Comics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		97526B7C156E08B600B13B0C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		97526B7E156E08B600B13B0C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		97526B80156E08B600B13B0C /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		97526B82156E08B600B13B0C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		97526B86156E08B600B13B0C /* Daily Comics-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Daily Comics-Info.plist"; sourceTree = "<group>"; };
+		97526B88156E08B600B13B0C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		97526B8A156E08B600B13B0C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		97526B8C156E08B600B13B0C /* Daily Comics-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Daily Comics-Prefix.pch"; sourceTree = "<group>"; };
+		97526B8D156E08B700B13B0C /* DCAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCAppDelegate.h; sourceTree = "<group>"; };
+		97526B8E156E08B700B13B0C /* DCAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCAppDelegate.m; sourceTree = "<group>"; };
+		97526B91156E08B700B13B0C /* Daily_Comics.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Daily_Comics.xcdatamodel; sourceTree = "<group>"; };
+		97526B93156E08B700B13B0C /* DCComicListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCComicListViewController.h; sourceTree = "<group>"; };
+		97526B94156E08B700B13B0C /* DCComicListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCComicListViewController.m; sourceTree = "<group>"; };
+		97526B9A156E08B700B13B0C /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/DCComicListViewController.xib; sourceTree = "<group>"; };
+		97526BA4156E169200B13B0C /* DCComicsHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCComicsHelper.h; sourceTree = "<group>"; };
+		97526BA5156E169200B13B0C /* DCComicsHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCComicsHelper.m; sourceTree = "<group>"; };
+		9778457A156E4B20005D1936 /* DCComicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCComicViewController.h; sourceTree = "<group>"; };
+		9778457B156E4B20005D1936 /* DCComicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCComicViewController.m; sourceTree = "<group>"; };
+		9778457C156E4B20005D1936 /* DCComicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCComicViewController.xib; sourceTree = "<group>"; };
+		9787015D1575F8C2000D8CA2 /* DCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMainViewController.h; sourceTree = "<group>"; };
+		9787015E1575F8C2000D8CA2 /* DCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCMainViewController.m; sourceTree = "<group>"; };
+		9787015F1575F8C2000D8CA2 /* DCMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCMainViewController.xib; sourceTree = "<group>"; };
+		97DC86111578C28D0080F958 /* ComicStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicStrip.h; sourceTree = "<group>"; };
+		97DC86121578C28D0080F958 /* ComicStrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicStrip.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		97526B75156E08B600B13B0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97526B7D156E08B600B13B0C /* UIKit.framework in Frameworks */,
+				97526B7F156E08B600B13B0C /* Foundation.framework in Frameworks */,
+				97526B81156E08B600B13B0C /* CoreGraphics.framework in Frameworks */,
+				97526B83156E08B600B13B0C /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		97526B6D156E08B600B13B0C = {
+			isa = PBXGroup;
+			children = (
+				97526B84156E08B600B13B0C /* Daily Comics */,
+				97526B7B156E08B600B13B0C /* Frameworks */,
+				97526B79156E08B600B13B0C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		97526B79156E08B600B13B0C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				97526B78156E08B600B13B0C /* Daily Comics.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		97526B7B156E08B600B13B0C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				97526B7C156E08B600B13B0C /* UIKit.framework */,
+				97526B7E156E08B600B13B0C /* Foundation.framework */,
+				97526B80156E08B600B13B0C /* CoreGraphics.framework */,
+				97526B82156E08B600B13B0C /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		97526B84156E08B600B13B0C /* Daily Comics */ = {
+			isa = PBXGroup;
+			children = (
+				97491CDF157392E800E034A3 /* DCSettingsViewController.h */,
+				97491CE0157392E800E034A3 /* DCSettingsViewController.m */,
+				97491CE1157392E800E034A3 /* DCSettingsViewController.xib */,
+				97526B8D156E08B700B13B0C /* DCAppDelegate.h */,
+				97526B8E156E08B700B13B0C /* DCAppDelegate.m */,
+				97526B93156E08B700B13B0C /* DCComicListViewController.h */,
+				97526B94156E08B700B13B0C /* DCComicListViewController.m */,
+				97526B99156E08B700B13B0C /* DCComicListViewController.xib */,
+				97526B90156E08B700B13B0C /* Daily_Comics.xcdatamodeld */,
+				97DC86111578C28D0080F958 /* ComicStrip.h */,
+				97DC86121578C28D0080F958 /* ComicStrip.m */,
+				97526B85156E08B600B13B0C /* Supporting Files */,
+				97526BA4156E169200B13B0C /* DCComicsHelper.h */,
+				97526BA5156E169200B13B0C /* DCComicsHelper.m */,
+				9778457A156E4B20005D1936 /* DCComicViewController.h */,
+				9778457B156E4B20005D1936 /* DCComicViewController.m */,
+				9778457C156E4B20005D1936 /* DCComicViewController.xib */,
+				9787015D1575F8C2000D8CA2 /* DCMainViewController.h */,
+				9787015E1575F8C2000D8CA2 /* DCMainViewController.m */,
+				9787015F1575F8C2000D8CA2 /* DCMainViewController.xib */,
+			);
+			path = "Daily Comics";
+			sourceTree = "<group>";
+		};
+		97526B85156E08B600B13B0C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				97526B86156E08B600B13B0C /* Daily Comics-Info.plist */,
+				97526B87156E08B600B13B0C /* InfoPlist.strings */,
+				97526B8A156E08B600B13B0C /* main.m */,
+				97526B8C156E08B600B13B0C /* Daily Comics-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		97526B77156E08B600B13B0C /* Daily Comics */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 97526BA1156E08B700B13B0C /* Build configuration list for PBXNativeTarget "Daily Comics" */;
+			buildPhases = (
+				97526B74156E08B600B13B0C /* Sources */,
+				97526B75156E08B600B13B0C /* Frameworks */,
+				97526B76156E08B600B13B0C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Daily Comics";
+			productName = "Daily Comics";
+			productReference = 97526B78156E08B600B13B0C /* Daily Comics.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		97526B6F156E08B600B13B0C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = DC;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 97526B72156E08B600B13B0C /* Build configuration list for PBXProject "Daily Comics" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 97526B6D156E08B600B13B0C;
+			productRefGroup = 97526B79156E08B600B13B0C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				97526B77156E08B600B13B0C /* Daily Comics */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		97526B76156E08B600B13B0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97526B89156E08B600B13B0C /* InfoPlist.strings in Resources */,
+				97526B9B156E08B700B13B0C /* DCComicListViewController.xib in Resources */,
+				9778457E156E4B20005D1936 /* DCComicViewController.xib in Resources */,
+				97491CE3157392E800E034A3 /* DCSettingsViewController.xib in Resources */,
+				978701611575F8C2000D8CA2 /* DCMainViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		97526B74156E08B600B13B0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				97526B8B156E08B600B13B0C /* main.m in Sources */,
+				97526B8F156E08B700B13B0C /* DCAppDelegate.m in Sources */,
+				97526B92156E08B700B13B0C /* Daily_Comics.xcdatamodeld in Sources */,
+				97526B95156E08B700B13B0C /* DCComicListViewController.m in Sources */,
+				97526BA6156E169200B13B0C /* DCComicsHelper.m in Sources */,
+				9778457D156E4B20005D1936 /* DCComicViewController.m in Sources */,
+				97491CE2157392E800E034A3 /* DCSettingsViewController.m in Sources */,
+				978701601575F8C2000D8CA2 /* DCMainViewController.m in Sources */,
+				97DC86131578C28D0080F958 /* ComicStrip.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		97526B87156E08B600B13B0C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97526B88156E08B600B13B0C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		97526B99156E08B700B13B0C /* DCComicListViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				97526B9A156E08B700B13B0C /* en */,
+			);
+			name = DCComicListViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		97526B9F156E08B700B13B0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		97526BA0156E08B700B13B0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		97526BA2156E08B700B13B0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Daily Comics/Daily Comics-Prefix.pch";
+				INFOPLIST_FILE = "Daily Comics/Daily Comics-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		97526BA3156E08B700B13B0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Daily Comics/Daily Comics-Prefix.pch";
+				INFOPLIST_FILE = "Daily Comics/Daily Comics-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		97526B72156E08B600B13B0C /* Build configuration list for PBXProject "Daily Comics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97526B9F156E08B700B13B0C /* Debug */,
+				97526BA0156E08B700B13B0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		97526BA1156E08B700B13B0C /* Build configuration list for PBXNativeTarget "Daily Comics" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				97526BA2156E08B700B13B0C /* Debug */,
+				97526BA3156E08B700B13B0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		97526B90156E08B700B13B0C /* Daily_Comics.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				97526B91156E08B700B13B0C /* Daily_Comics.xcdatamodel */,
+			);
+			currentVersion = 97526B91156E08B700B13B0C /* Daily_Comics.xcdatamodel */;
+			path = Daily_Comics.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 97526B6F156E08B600B13B0C /* Project object */;
+}
