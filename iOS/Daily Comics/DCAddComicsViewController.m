@@ -22,6 +22,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         appDelegate = (DCAppDelegate *)[[UIApplication sharedApplication] delegate];
+        self.title = @"Add removed comics";
     }
     return self;
 }
