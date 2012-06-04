@@ -18,6 +18,7 @@
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 @synthesize comicListJson = __comicListJson;
 @synthesize comicsRefreshed;
+@synthesize totalNumberOfComics;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {        
@@ -29,6 +30,7 @@
     naviController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
     naviController.toolbarHidden = NO;
     
+    self.totalNumberOfComics = [self totalNumberOfComicsInDB];    
     self.comicsRefreshed = NO;
 
     self.window = [[UIWindow alloc] 
@@ -65,6 +67,20 @@
 
         self.comicsRefreshed = YES;
     }
+}
+
+- (int)totalNumberOfComicsInDB {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entityDescription];
+    
+    NSError *error = nil;
+    NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    if (result == nil || error != nil) {
+        NSLog(@"Core data error: %@", error);
+    }
+    
+    return [result count];
 }
 
 - (BOOL)comicInCoreData:(NSString *)tag {

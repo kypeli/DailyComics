@@ -22,7 +22,9 @@
 
 @property (nonatomic)         BOOL           comicsRefreshed;
 @property (strong, nonatomic) NSArray        *comicListJson;
+@property (nonatomic)         int            totalNumberOfComics;
 
+- (int)totalNumberOfComicsInDB;
 - (BOOL)comicInCoreData:(NSString *)tag;
 - (ComicStrip *)fetchComicWithTag:(NSString *)tag;
 - (void)saveContext;

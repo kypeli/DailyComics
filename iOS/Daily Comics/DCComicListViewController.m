@@ -9,6 +9,7 @@
 
 #import "DCComicListViewController.h"
 #import "DCComicsHelper.h"
+#import "DCAddComicsViewController.h"
 #import "DCComicViewController.h"
 #import "DCAppDelegate.h"
 #import "ComicStrip.h"
@@ -33,12 +34,6 @@
                                                        target: self
                                                        action: @selector( addComic: ) ];
         self.toolbarItems = [ NSArray arrayWithObject: buttonItem ];
-
-        // Configure the NavigationController.
-        //  - Title
-        //  - Right will contain an edit button to remove comics from the list.
-        self.navigationItem.rightBarButtonItem = self.editButtonItem;
-        self.title = @"Comics";
         
         cvc = [[DCComicViewController alloc] initWithNibName:@"DCComicViewController" 
                                                       bundle:nil];
@@ -53,16 +48,39 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
+    // Configure the NavigationController.
+    //  - Title
+    //  - Right will contain an edit button to remove comics from the list.
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.title = @"Comics";
 
     if (appDelegate.comicsRefreshed == NO) {
         NSLog(@"No comic list cached. Fetching it...");
         [comicsHelper fetchComicList:self withListSelector:@selector(gotComicList:)];
     } else {
         NSLog(@"Having comic list in cache. Showing it.");
-       // comicsListModel = [appDelegate comicListModel:YES];
-        [comicList reloadData];
     }      
     
+    comicList.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+    comicList.delegate     = self;
+    comicList.dataSource   = self;
+    
+    [comicList reloadData];
+}
+
+- (void)updateAddComicsButtonState {
+    UIBarButtonItem *toolbarAddComicsButton = [self.toolbarItems objectAtIndex:0];
+    
+    if ([[fetchResultsController fetchedObjects] count] == appDelegate.totalNumberOfComics) {
+        toolbarAddComicsButton.enabled = NO;
+    } else {
+        toolbarAddComicsButton.enabled = YES;
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [self updateAddComicsButtonState];
 }
 
 - (void)setupFetchedResultsController {
@@ -117,10 +135,7 @@
     for (NSDictionary *comic in appDelegate.comicListJson) {
         NSLog(@"Comic name: %@", [comic objectForKey:@"name"]);
     }    
-    
-    comicList.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    comicList.delegate     = self;
-    comicList.dataSource   = self;
+
     
     [comicList reloadData];
 }
@@ -152,7 +167,6 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-   // NSDictionary *comicData = [comicsData objectAtIndex:indexPath.row];
     ComicStrip *comicStripData = [fetchResultsController objectAtIndexPath:indexPath];
     
     cvc.comicTag         = comicStripData.comicId;
@@ -178,6 +192,10 @@
 // Add comic -button handler.
 - (void)addComic:(id)sender {
     NSLog(@"Add comics.");
+    
+    DCAddComicsViewController *addComics = [[DCAddComicsViewController alloc] initWithNibName:@"DCAddComicsViewController" 
+                                                                                       bundle:nil];
+    [self.navigationController pushViewController:addComics animated:YES];
 }
 
 /* NSFetchedResultsControllerDelegate implementations. */
@@ -193,9 +211,16 @@
     switch(type) {
         case NSFetchedResultsChangeDelete:
             [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-            withRowAnimation:UITableViewRowAnimationFade];
+                             withRowAnimation:UITableViewRowAnimationFade];
+            break;
+            
+        case NSFetchedResultsChangeInsert:
+            [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:newIndexPath]
+                             withRowAnimation:UITableViewRowAnimationFade];
             break;
     }
+    
+    [self updateAddComicsButtonState];
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
