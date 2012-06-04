@@ -14,13 +14,18 @@
     DCAppDelegate         *appDelegate;
     DCComicViewController *cvc;
     DCComicsHelper        *comicsHelper;
-    NSArray               *comicsListModel;
+    // NSArray               *comicsListModel;
+    NSManagedObjectContext *managedObjectContext;
+//    NSFetchRequest        *fetchRequest;
+    NSFetchedResultsController *fetchResultsController;
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *comicList;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
+- (void)setupFetchedResultsController;
 - (void)gotComicList: (NSData *)listJsonData;
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath;

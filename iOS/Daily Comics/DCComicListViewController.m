@@ -32,6 +32,8 @@
         
         comicsHelper  = [[DCComicsHelper alloc] init];    
         
+        [self setupFetchedResultsController];
+        
         self.title = @"Comics";
     }
     return self;
@@ -39,15 +41,45 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    if (appDelegate.comicStripsArray.count == 0) {
+
+    if (appDelegate.comicsRefreshed == NO) {
         NSLog(@"No comic list cached. Fetching it...");
         [comicsHelper fetchComicList:self withListSelector:@selector(gotComicList:)];
     } else {
         NSLog(@"Having comic list in cache. Showing it.");
-        comicsListModel = [appDelegate comicListModel:YES];
+       // comicsListModel = [appDelegate comicListModel:YES];
         [comicList reloadData];
     }      
+    
+}
+
+- (void)setupFetchedResultsController {
+    // Setup Core data object context and request.
+    managedObjectContext = appDelegate.managedObjectContext;
+    NSEntityDescription *entityDescription = [NSEntityDescription entityForName:@"ComicStrip" inManagedObjectContext:managedObjectContext];
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    [fetchRequest setEntity:entityDescription];
+    
+    // Setup the request.
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"comicSelected == YES"];
+    [fetchRequest setPredicate:predicate];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"comicName" ascending:YES];
+    NSArray *sortDescriptors = [[NSArray alloc] initWithObjects:sortDescriptor, nil];
+    [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    fetchResultsController = [[NSFetchedResultsController alloc]
+                              initWithFetchRequest:fetchRequest 
+                              managedObjectContext:managedObjectContext 
+                                sectionNameKeyPath:nil 
+                                         cacheName:nil];
+    
+    NSError *e;
+    BOOL success = [fetchResultsController performFetch:&e];
+    if (!success) {
+        NSLog(@"Setting up NSFetchedResultsController failed!");
+    }
 }
 
 - (void)gotComicList: (NSData *)listJsonData {
@@ -56,15 +88,15 @@
     
     NSError *e;
     NSDictionary *json = [NSJSONSerialization JSONObjectWithData:listJsonData options:NSJSONReadingMutableContainers error:&e];
-    
-    // Store the JSON list as shared data to the App delegate. The Settings view might want to re-use it.
-    appDelegate.comicListJson = [json objectForKey:@"comics"];
-    comicsListModel = [appDelegate comicListModel:YES];
 
     if (json == nil) {
         NSLog(@"Error parsing JSON!");
         return;
     }
+    
+    // Store the JSON list as shared data to the App delegate. The Settings view might want to re-use it.
+    appDelegate.comicListJson = [json objectForKey:@"comics"];
+    // comicsListModel = [appDelegate comicListModel:YES];
     
     NSLog(@"Got comics, %u items.", [appDelegate.comicListJson count]);
     
@@ -80,11 +112,12 @@
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return [[fetchResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [comicsListModel count];
+    id <NSFetchedResultsSectionInfo> sectionInfo = [[fetchResultsController sections] objectAtIndex:section];
+    return [sectionInfo numberOfObjects];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -97,7 +130,8 @@
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     }
     
-    ComicStrip *comicStripData = [comicsListModel objectAtIndex:indexPath.row];
+    
+    ComicStrip *comicStripData = [fetchResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = comicStripData.comicName;
         
     return cell;
@@ -105,7 +139,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
    // NSDictionary *comicData = [comicsData objectAtIndex:indexPath.row];
-    ComicStrip *comicStripData = [comicsListModel objectAtIndex:indexPath.row];
+    ComicStrip *comicStripData = [fetchResultsController objectAtIndexPath:indexPath];
     
     cvc.comicTag         = comicStripData.comicId;
     cvc.comicNameText    = comicStripData.comicName;

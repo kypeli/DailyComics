@@ -18,6 +18,7 @@
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 @synthesize comicListJson = __comicListJson;
 @synthesize comicStripsArray;
+@synthesize comicsRefreshed;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {        
@@ -28,6 +29,8 @@
                                                                 bundle:nil];
 
     naviController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    
+    self.comicsRefreshed = NO;
 
     self.window = [[UIWindow alloc] 
                    initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -61,6 +64,7 @@
             comic = [self fetchComicWithTag:comicId];
         }
 
+        self.comicsRefreshed = YES;
         [comicStripsArray addObject:comic];
     }
 }

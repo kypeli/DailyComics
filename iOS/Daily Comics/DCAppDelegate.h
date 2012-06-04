@@ -20,12 +20,13 @@
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (readonly, strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
+@property (nonatomic)         BOOL           comicsRefreshed;
 @property (strong, nonatomic) NSArray        *comicListJson;
-@property (strong, nonatomic) NSMutableArray *comicStripsArray;
+@property (strong, nonatomic) NSMutableArray *comicStripsArray;   // NOT NEEDED
 
 - (BOOL)comicInCoreData:(NSString *)tag;
 - (ComicStrip *)fetchComicWithTag:(NSString *)tag;
-- (NSArray *)comicListModel:(BOOL)onlySelected;
+- (NSArray *)comicListModel:(BOOL)onlySelected;         // REMOVE 
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 
