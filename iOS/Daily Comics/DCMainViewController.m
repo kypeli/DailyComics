@@ -8,7 +8,6 @@
 
 #import "DCMainViewController.h"
 #import "DCComicListViewController.h"
-#import "DCSettingsViewController.h"
 
 @interface DCMainViewController ()
 
@@ -23,8 +22,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         comicListView       = [[DCComicListViewController alloc] initWithNibName:@"DCComicListViewController" 
-                                                                    bundle:nil];
-        comicSettingsView   = [[DCSettingsViewController alloc] initWithNibName:@"DCSettingsViewController" 
                                                                     bundle:nil];
         self.title = @"Daily Comics";
     }

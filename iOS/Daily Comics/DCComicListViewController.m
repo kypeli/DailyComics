@@ -16,6 +16,7 @@
 @implementation DCComicListViewController
 
 @synthesize comicList;
+
 @synthesize managedObjectContext = _managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -24,8 +25,20 @@
     if (self) {        
         appDelegate = (DCAppDelegate *)[[UIApplication sharedApplication] delegate];
         
-        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:self];
-        navigationController.navigationBar.barStyle = UIBarStyleBlack;
+        // Configure toolbar and items.
+        UIBarButtonItem  *buttonItem;
+        
+        buttonItem = [[ UIBarButtonItem alloc ] initWithTitle: @"Add comics"
+                                                        style: UIBarButtonItemStyleBordered
+                                                       target: self
+                                                       action: @selector( addComic: ) ];
+        self.toolbarItems = [ NSArray arrayWithObject: buttonItem ];
+
+        // Configure the NavigationController.
+        //  - Title
+        //  - Right will contain an edit button to remove comics from the list.
+        self.navigationItem.rightBarButtonItem = self.editButtonItem;
+        self.title = @"Comics";
         
         cvc = [[DCComicViewController alloc] initWithNibName:@"DCComicViewController" 
                                                       bundle:nil];
@@ -33,9 +46,8 @@
         comicsHelper  = [[DCComicsHelper alloc] init];    
         
         [self setupFetchedResultsController];
-        
-        self.title = @"Comics";
     }
+
     return self;
 }
 
@@ -74,6 +86,8 @@
                               managedObjectContext:managedObjectContext 
                                 sectionNameKeyPath:nil 
                                          cacheName:nil];
+    
+    fetchResultsController.delegate = self;
     
     NSError *e;
     BOOL success = [fetchResultsController performFetch:&e];
@@ -149,6 +163,51 @@
     [self.navigationController pushViewController:cvc animated:YES];    
 }
 
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *) indexPath
+{
+    
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        ComicStrip *comicStripData = [fetchResultsController objectAtIndexPath:indexPath];
+        NSLog(@"Removing row from selected contacts with tag %@", comicStripData.comicId);
+        
+        comicStripData.comicSelected = [NSNumber numberWithBool:NO];
+    }
+}
+
+// Add comic -button handler.
+- (void)addComic:(id)sender {
+    NSLog(@"Add comics.");
+}
+
+/* NSFetchedResultsControllerDelegate implementations. */
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject
+       atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type
+      newIndexPath:(NSIndexPath *)newIndexPath {
+    
+    NSLog(@"Table content changed.");
+    
+    UITableView *tableView = self.comicList;
+    
+    switch(type) {
+        case NSFetchedResultsChangeDelete:
+            [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
+            withRowAnimation:UITableViewRowAnimationFade];
+            break;
+    }
+}
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    NSLog(@"Table content will change.");
+    [self.comicList beginUpdates];
+}
+    
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    NSLog(@"Table content did change.");
+    [self.comicList endUpdates];
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
@@ -160,4 +219,5 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
 }
+
 @end

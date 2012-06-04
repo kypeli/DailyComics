@@ -17,18 +17,17 @@
 @synthesize managedObjectModel = __managedObjectModel;
 @synthesize persistentStoreCoordinator = __persistentStoreCoordinator;
 @synthesize comicListJson = __comicListJson;
-@synthesize comicStripsArray;
 @synthesize comicsRefreshed;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {        
-    comicStripsArray = [[NSMutableArray alloc] initWithCapacity:1];
     entityDescription = [NSEntityDescription entityForName:@"ComicStrip" inManagedObjectContext:self.managedObjectContext];
     
     DCMainViewController *mainViewController = [[DCMainViewController alloc] initWithNibName:@"DCMainViewController"
                                                                 bundle:nil];
 
     naviController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    naviController.toolbarHidden = NO;
     
     self.comicsRefreshed = NO;
 
@@ -65,7 +64,6 @@
         }
 
         self.comicsRefreshed = YES;
-        [comicStripsArray addObject:comic];
     }
 }
 
@@ -90,25 +88,6 @@
     
     NSLog(@"No comic with tag %@ found in core data.", tag);
     return NO;
-}
-
-- (NSArray *)comicListModel:(BOOL)onlySelected {
-    NSArray *returnComicList;
-    NSMutableArray *selectedComics = [[NSMutableArray alloc] init ];
-    
-    if (onlySelected) {
-        for(ComicStrip *comic in comicStripsArray) {
-            if ([comic.comicSelected boolValue]) {
-                [selectedComics addObject:comic];
-            }
-        }
-        
-        returnComicList = selectedComics;
-    } else {
-        returnComicList = comicStripsArray;
-    }
-    
-    return returnComicList;
 }
 
 - (ComicStrip *)fetchComicWithTag:(NSString *)tag {

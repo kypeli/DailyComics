@@ -10,13 +10,14 @@
 @class DCComicsHelper;
 @class DCComicViewController;
 @class DCAppDelegate;
-@interface DCComicListViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>  {
+@interface DCComicListViewController : UITableViewController <UITableViewDelegate, 
+                                                              UITableViewDataSource, 
+                                                              NSFetchedResultsControllerDelegate>  
+{
     DCAppDelegate         *appDelegate;
     DCComicViewController *cvc;
     DCComicsHelper        *comicsHelper;
-    // NSArray               *comicsListModel;
     NSManagedObjectContext *managedObjectContext;
-//    NSFetchRequest        *fetchRequest;
     NSFetchedResultsController *fetchResultsController;
 }
 
@@ -25,6 +26,7 @@
 
 - (void)setupFetchedResultsController;
 - (void)gotComicList: (NSData *)listJsonData;
+- (void)addComic:(id)sender;
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView;
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section;

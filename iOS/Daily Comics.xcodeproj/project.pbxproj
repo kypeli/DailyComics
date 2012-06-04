@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		97491CE2157392E800E034A3 /* DCSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97491CE0157392E800E034A3 /* DCSettingsViewController.m */; };
-		97491CE3157392E800E034A3 /* DCSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 97491CE1157392E800E034A3 /* DCSettingsViewController.xib */; };
 		97526B7D156E08B600B13B0C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97526B7C156E08B600B13B0C /* UIKit.framework */; };
 		97526B7F156E08B600B13B0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97526B7E156E08B600B13B0C /* Foundation.framework */; };
 		97526B81156E08B600B13B0C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97526B80156E08B600B13B0C /* CoreGraphics.framework */; };
@@ -28,9 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		97491CDF157392E800E034A3 /* DCSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DCSettingsViewController.h; path = ../DCSettingsViewController.h; sourceTree = "<group>"; };
-		97491CE0157392E800E034A3 /* DCSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DCSettingsViewController.m; path = ../DCSettingsViewController.m; sourceTree = "<group>"; };
-		97491CE1157392E800E034A3 /* DCSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DCSettingsViewController.xib; path = ../DCSettingsViewController.xib; sourceTree = "<group>"; };
 		97526B78156E08B600B13B0C /* Daily Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Comics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97526B7C156E08B600B13B0C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		97526B7E156E08B600B13B0C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -104,9 +99,6 @@
 		97526B84156E08B600B13B0C /* Daily Comics */ = {
 			isa = PBXGroup;
 			children = (
-				97491CDF157392E800E034A3 /* DCSettingsViewController.h */,
-				97491CE0157392E800E034A3 /* DCSettingsViewController.m */,
-				97491CE1157392E800E034A3 /* DCSettingsViewController.xib */,
 				97526B8D156E08B700B13B0C /* DCAppDelegate.h */,
 				97526B8E156E08B700B13B0C /* DCAppDelegate.m */,
 				97526B93156E08B700B13B0C /* DCComicListViewController.h */,
@@ -193,7 +185,6 @@
 				97526B89156E08B600B13B0C /* InfoPlist.strings in Resources */,
 				97526B9B156E08B700B13B0C /* DCComicListViewController.xib in Resources */,
 				9778457E156E4B20005D1936 /* DCComicViewController.xib in Resources */,
-				97491CE3157392E800E034A3 /* DCSettingsViewController.xib in Resources */,
 				978701611575F8C2000D8CA2 /* DCMainViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -211,7 +202,6 @@
 				97526B95156E08B700B13B0C /* DCComicListViewController.m in Sources */,
 				97526BA6156E169200B13B0C /* DCComicsHelper.m in Sources */,
 				9778457D156E4B20005D1936 /* DCComicViewController.m in Sources */,
-				97491CE2157392E800E034A3 /* DCSettingsViewController.m in Sources */,
 				978701601575F8C2000D8CA2 /* DCMainViewController.m in Sources */,
 				97DC86131578C28D0080F958 /* ComicStrip.m in Sources */,
 			);
