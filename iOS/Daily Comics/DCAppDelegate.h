@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class DCMainViewController;
 @class ComicStrip;
 @interface DCAppDelegate : UIResponder <UIApplicationDelegate> {
     UINavigationController *naviController;
@@ -26,7 +25,6 @@
 
 - (int)totalNumberOfComicsInDB;
 - (BOOL)comicInCoreData:(NSString *)tag;
-- (ComicStrip *)fetchComicWithTag:(NSString *)tag;
 - (void)saveContext;
 - (NSURL *)applicationDocumentsDirectory;
 

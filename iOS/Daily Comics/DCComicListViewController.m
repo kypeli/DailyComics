@@ -221,6 +221,7 @@
     }
     
     [self updateAddComicsButtonState];
+    [appDelegate saveContext];
 }
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {

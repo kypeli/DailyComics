@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		971A4BBC157CC78B00CCF4CC /* DCAddComicsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 971A4BBA157CC78B00CCF4CC /* DCAddComicsViewController.m */; };
+		971A4BBD157CC78B00CCF4CC /* DCAddComicsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 971A4BBB157CC78B00CCF4CC /* DCAddComicsViewController.xib */; };
 		97526B7D156E08B600B13B0C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97526B7C156E08B600B13B0C /* UIKit.framework */; };
 		97526B7F156E08B600B13B0C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97526B7E156E08B600B13B0C /* Foundation.framework */; };
 		97526B81156E08B600B13B0C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97526B80156E08B600B13B0C /* CoreGraphics.framework */; };
@@ -20,12 +22,13 @@
 		97526BA6156E169200B13B0C /* DCComicsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97526BA5156E169200B13B0C /* DCComicsHelper.m */; };
 		9778457D156E4B20005D1936 /* DCComicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9778457B156E4B20005D1936 /* DCComicViewController.m */; };
 		9778457E156E4B20005D1936 /* DCComicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9778457C156E4B20005D1936 /* DCComicViewController.xib */; };
-		978701601575F8C2000D8CA2 /* DCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9787015E1575F8C2000D8CA2 /* DCMainViewController.m */; };
-		978701611575F8C2000D8CA2 /* DCMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9787015F1575F8C2000D8CA2 /* DCMainViewController.xib */; };
 		97DC86131578C28D0080F958 /* ComicStrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 97DC86121578C28D0080F958 /* ComicStrip.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		971A4BB9157CC78B00CCF4CC /* DCAddComicsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCAddComicsViewController.h; sourceTree = "<group>"; };
+		971A4BBA157CC78B00CCF4CC /* DCAddComicsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCAddComicsViewController.m; sourceTree = "<group>"; };
+		971A4BBB157CC78B00CCF4CC /* DCAddComicsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCAddComicsViewController.xib; sourceTree = "<group>"; };
 		97526B78156E08B600B13B0C /* Daily Comics.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Daily Comics.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97526B7C156E08B600B13B0C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		97526B7E156E08B600B13B0C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -46,9 +49,6 @@
 		9778457A156E4B20005D1936 /* DCComicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCComicViewController.h; sourceTree = "<group>"; };
 		9778457B156E4B20005D1936 /* DCComicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCComicViewController.m; sourceTree = "<group>"; };
 		9778457C156E4B20005D1936 /* DCComicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCComicViewController.xib; sourceTree = "<group>"; };
-		9787015D1575F8C2000D8CA2 /* DCMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCMainViewController.h; sourceTree = "<group>"; };
-		9787015E1575F8C2000D8CA2 /* DCMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCMainViewController.m; sourceTree = "<group>"; };
-		9787015F1575F8C2000D8CA2 /* DCMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCMainViewController.xib; sourceTree = "<group>"; };
 		97DC86111578C28D0080F958 /* ComicStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicStrip.h; sourceTree = "<group>"; };
 		97DC86121578C28D0080F958 /* ComicStrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicStrip.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,9 +113,9 @@
 				9778457A156E4B20005D1936 /* DCComicViewController.h */,
 				9778457B156E4B20005D1936 /* DCComicViewController.m */,
 				9778457C156E4B20005D1936 /* DCComicViewController.xib */,
-				9787015D1575F8C2000D8CA2 /* DCMainViewController.h */,
-				9787015E1575F8C2000D8CA2 /* DCMainViewController.m */,
-				9787015F1575F8C2000D8CA2 /* DCMainViewController.xib */,
+				971A4BB9157CC78B00CCF4CC /* DCAddComicsViewController.h */,
+				971A4BBA157CC78B00CCF4CC /* DCAddComicsViewController.m */,
+				971A4BBB157CC78B00CCF4CC /* DCAddComicsViewController.xib */,
 			);
 			path = "Daily Comics";
 			sourceTree = "<group>";
@@ -185,7 +185,7 @@
 				97526B89156E08B600B13B0C /* InfoPlist.strings in Resources */,
 				97526B9B156E08B700B13B0C /* DCComicListViewController.xib in Resources */,
 				9778457E156E4B20005D1936 /* DCComicViewController.xib in Resources */,
-				978701611575F8C2000D8CA2 /* DCMainViewController.xib in Resources */,
+				971A4BBD157CC78B00CCF4CC /* DCAddComicsViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,8 +202,8 @@
 				97526B95156E08B700B13B0C /* DCComicListViewController.m in Sources */,
 				97526BA6156E169200B13B0C /* DCComicsHelper.m in Sources */,
 				9778457D156E4B20005D1936 /* DCComicViewController.m in Sources */,
-				978701601575F8C2000D8CA2 /* DCMainViewController.m in Sources */,
 				97DC86131578C28D0080F958 /* ComicStrip.m in Sources */,
+				971A4BBC157CC78B00CCF4CC /* DCAddComicsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

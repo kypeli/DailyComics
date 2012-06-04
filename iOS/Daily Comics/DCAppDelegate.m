@@ -7,7 +7,7 @@
 //
 
 #import "DCAppDelegate.h"
-#import "DCMainViewController.h"
+#import "DCComicListViewController.h"
 #import "ComicStrip.h"
 
 @implementation DCAppDelegate
@@ -24,8 +24,8 @@
 {        
     entityDescription = [NSEntityDescription entityForName:@"ComicStrip" inManagedObjectContext:self.managedObjectContext];
     
-    DCMainViewController *mainViewController = [[DCMainViewController alloc] initWithNibName:@"DCMainViewController"
-                                                                bundle:nil];
+    DCComicListViewController *mainViewController = [[DCComicListViewController alloc] initWithNibName:@"DCComicListViewController"
+                                                                                                bundle:nil];
 
     naviController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
     naviController.toolbarHidden = NO;
@@ -48,9 +48,9 @@
     for(NSDictionary *comicDict in __comicListJson) {
         NSString *comicId = [comicDict objectForKey:@"comicid"];
         
-        ComicStrip *comic;
         if ([self comicInCoreData:comicId] == NO) {
             // Create and configure a new instance of the ComicStrip entity for core data.
+            ComicStrip *comic;
             comic = (ComicStrip *)[NSEntityDescription insertNewObjectForEntityForName:@"ComicStrip" 
                                                                         inManagedObjectContext:self.managedObjectContext];
             
@@ -61,9 +61,7 @@
             [self saveContext];
             
             NSLog(@"Comic %@ stored to Core data.", comic.comicName);
-        } else {
-            comic = [self fetchComicWithTag:comicId];
-        }
+        } 
 
         self.comicsRefreshed = YES;
     }
@@ -105,30 +103,6 @@
     NSLog(@"No comic with tag %@ found in core data.", tag);
     return NO;
 }
-
-- (ComicStrip *)fetchComicWithTag:(NSString *)tag {
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    [fetchRequest setEntity:entityDescription]; 
-    
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"comicId like[c] %@", tag];
-    [fetchRequest setPredicate:predicate];
-    
-    NSError *error = nil;
-    NSArray *results = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
-    if (results == nil) {
-        NSLog(@"Error fetching comic with tag %@!", tag);
-        return nil;
-    }
-    
-    if([results count] != 1) {
-        NSLog(@"Error fetching comic with tag %@! Got %u items, expected just one.", tag, [results count]);
-        return nil;        
-    }
-    
-    ComicStrip *strip = [results objectAtIndex:0];
-    return strip;
- }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
