@@ -37,7 +37,6 @@
 @implementation DCComicListViewController
 
 @synthesize comicList;
-
 @synthesize managedObjectContext = _managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -53,8 +52,7 @@
         self.title = @"Comics";
         
         // Configure toolbar and items.
-        UIBarButtonItem  *buttonItem;
-        
+        UIBarButtonItem  *buttonItem;        
         buttonItem = [[ UIBarButtonItem alloc ] initWithTitle: @"Add removed comics"
                                                         style: UIBarButtonItemStyleBordered
                                                        target: self
@@ -63,6 +61,7 @@
         
         cvc = [[DCComicViewController alloc] initWithNibName:@"DCComicViewController" 
                                                       bundle:nil];
+        cvc.tweetComposeViewController = [[TWTweetComposeViewController alloc] init];
         
         comicsHelper  = [[DCComicsHelper alloc] init];    
         

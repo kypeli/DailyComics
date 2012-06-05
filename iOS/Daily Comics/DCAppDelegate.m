@@ -51,7 +51,7 @@
     
     self.totalNumberOfComics = [self totalNumberOfComicsInDB];    
     self.comicsRefreshed = NO;
-
+    
     self.window = [[UIWindow alloc] 
                    initWithFrame:[[UIScreen mainScreen] bounds]];
     

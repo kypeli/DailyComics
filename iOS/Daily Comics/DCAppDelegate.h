@@ -26,6 +26,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <Twitter/Twitter.h>
 
 @class ComicStrip;
 @interface DCAppDelegate : UIResponder <UIApplicationDelegate> {

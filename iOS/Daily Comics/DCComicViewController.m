@@ -25,10 +25,11 @@
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.using System;
  */
 
+#import <Foundation/NSJSONSerialization.h> 
+
 #import "DCComicViewController.h"
 #import "DCComicsHelper.h"
-
-#import <Foundation/NSJSONSerialization.h> 
+#import "DCAppDelegate.h"
 
 @interface DCComicViewController ()
 
@@ -43,6 +44,7 @@
 @synthesize comicTag;
 @synthesize comicNameText;
 @synthesize comicPubDateText;
+@synthesize tweetComposeViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -50,7 +52,6 @@
     if (self) {
         comicsHelper    = [[DCComicsHelper alloc] init];
         comicImageCache = [[NSMutableDictionary alloc] init]; 
-        tweetComposeViewController = [[TWTweetComposeViewController alloc] init ];
     }
     
     return self;
@@ -86,9 +87,9 @@
     NSString *tweetText = [[NSString alloc] initWithFormat:@"Check out this %@ comic that I found using Daily Comics.", self.comicNameText];
     UIImage  *tweetImage = comicView.image;
     
-    [tweetComposeViewController setInitialText:tweetText];
-    [tweetComposeViewController addImage:tweetImage];
-    [self presentModalViewController:tweetComposeViewController animated:YES];
+    [self.tweetComposeViewController setInitialText:tweetText];
+    [self.tweetComposeViewController addImage:tweetImage];
+    [self presentModalViewController:self.tweetComposeViewController animated:YES];
 }
 
 - (void)gotComicData: (NSData *)comicJsonData {

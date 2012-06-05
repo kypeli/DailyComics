@@ -34,7 +34,6 @@
     NSURLConnection     *httpConn;
     NSMutableData       *imageData;
     NSMutableDictionary *comicImageCache;
-    TWTweetComposeViewController *tweetComposeViewController;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *comicView;
@@ -42,6 +41,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *comicPubDateUILabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (weak, nonatomic) IBOutlet UIButton *shareOnTwitterButton;
+@property (strong, nonatomic) TWTweetComposeViewController *tweetComposeViewController;
 
 @property (weak, nonatomic) NSString *comicTag;
 @property (weak, nonatomic) NSString *comicNameText;

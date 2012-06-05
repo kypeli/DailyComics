@@ -26,6 +26,7 @@
  */
 
 #import <CoreData/CoreData.h>
+#import <Twitter/Twitter.h>
 
 @class DCComicsHelper;
 @class DCComicViewController;
@@ -43,6 +44,7 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *comicList;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 
 - (void)setupFetchedResultsController;
 - (void)gotComicList: (NSData *)listJsonData;
