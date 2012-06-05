@@ -49,6 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     addComicsList.delegate   = self;
     addComicsList.dataSource = self;
     [self setupFetchedResultsController];

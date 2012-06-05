@@ -22,6 +22,7 @@
 		97526BA6156E169200B13B0C /* DCComicsHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 97526BA5156E169200B13B0C /* DCComicsHelper.m */; };
 		9778457D156E4B20005D1936 /* DCComicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9778457B156E4B20005D1936 /* DCComicViewController.m */; };
 		9778457E156E4B20005D1936 /* DCComicViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9778457C156E4B20005D1936 /* DCComicViewController.xib */; };
+		97BD3EFD157E17F000222B5B /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 97BD3EFC157E17F000222B5B /* Twitter.framework */; };
 		97DC86131578C28D0080F958 /* ComicStrip.m in Sources */ = {isa = PBXBuildFile; fileRef = 97DC86121578C28D0080F958 /* ComicStrip.m */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		9778457A156E4B20005D1936 /* DCComicViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCComicViewController.h; sourceTree = "<group>"; };
 		9778457B156E4B20005D1936 /* DCComicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DCComicViewController.m; sourceTree = "<group>"; };
 		9778457C156E4B20005D1936 /* DCComicViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DCComicViewController.xib; sourceTree = "<group>"; };
+		97BD3EFC157E17F000222B5B /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		97DC86111578C28D0080F958 /* ComicStrip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComicStrip.h; sourceTree = "<group>"; };
 		97DC86121578C28D0080F958 /* ComicStrip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComicStrip.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97BD3EFD157E17F000222B5B /* Twitter.framework in Frameworks */,
 				97526B7D156E08B600B13B0C /* UIKit.framework in Frameworks */,
 				97526B7F156E08B600B13B0C /* Foundation.framework in Frameworks */,
 				97526B81156E08B600B13B0C /* CoreGraphics.framework in Frameworks */,
@@ -71,6 +74,7 @@
 		97526B6D156E08B600B13B0C = {
 			isa = PBXGroup;
 			children = (
+				97BD3EFC157E17F000222B5B /* Twitter.framework */,
 				97526B84156E08B600B13B0C /* Daily Comics */,
 				97526B7B156E08B600B13B0C /* Frameworks */,
 				97526B79156E08B600B13B0C /* Products */,
@@ -110,8 +114,8 @@
 				97526B85156E08B600B13B0C /* Supporting Files */,
 				97526BA4156E169200B13B0C /* DCComicsHelper.h */,
 				97526BA5156E169200B13B0C /* DCComicsHelper.m */,
-				9778457A156E4B20005D1936 /* DCComicViewController.h */,
 				9778457B156E4B20005D1936 /* DCComicViewController.m */,
+				9778457A156E4B20005D1936 /* DCComicViewController.h */,
 				9778457C156E4B20005D1936 /* DCComicViewController.xib */,
 				971A4BB9157CC78B00CCF4CC /* DCAddComicsViewController.h */,
 				971A4BBA157CC78B00CCF4CC /* DCAddComicsViewController.m */,

@@ -38,6 +38,7 @@
 @synthesize scrollView;
 @synthesize comicPubDateUILabel;
 @synthesize activityIndicator;
+@synthesize shareOnTwitterButton;
 @synthesize comicView;
 @synthesize comicTag;
 @synthesize comicNameText;
@@ -49,7 +50,9 @@
     if (self) {
         comicsHelper    = [[DCComicsHelper alloc] init];
         comicImageCache = [[NSMutableDictionary alloc] init]; 
+        tweetComposeViewController = [[TWTweetComposeViewController alloc] init ];
     }
+    
     return self;
 }
 
@@ -58,6 +61,12 @@
     [super viewWillAppear:animated];
     self.title                      = self.comicNameText;
     self.comicPubDateUILabel.text   = self.comicPubDateText;
+    
+    shareOnTwitterButton.hidden = NO;
+    if ([TWTweetComposeViewController canSendTweet] == NO) {
+        NSLog(@"No Twitter account set up. Hiding Twitter button.");
+        shareOnTwitterButton.hidden = YES;
+    }
         
     // Check if comic image has been cached. If not, fetch comic data from the server.
     if ([comicImageCache objectForKey:comicTag] == nil) {
@@ -71,6 +80,15 @@
         [self showComicFromCache:comicTag];
     }
 
+}
+
+- (IBAction)shareOnTwitterTapped:(id)sender {
+    NSString *tweetText = [[NSString alloc] initWithFormat:@"Check out this %@ comic that I found using Daily Comics.", self.comicNameText];
+    UIImage  *tweetImage = comicView.image;
+    
+    [tweetComposeViewController setInitialText:tweetText];
+    [tweetComposeViewController addImage:tweetImage];
+    [self presentModalViewController:tweetComposeViewController animated:YES];
 }
 
 - (void)gotComicData: (NSData *)comicJsonData {
@@ -157,6 +175,7 @@
     [self setScrollView:nil];
     [self setComicPubDateUILabel:nil];
     [self setActivityIndicator:nil];
+    [self setShareOnTwitterButton:nil];
     [super viewDidUnload];
 }
 

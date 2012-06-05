@@ -26,6 +26,7 @@
  */
 
 #import <UIKit/UIKit.h>
+#import <Twitter/Twitter.h>
 
 @class DCComicsHelper;
 @interface DCComicViewController : UIViewController {
@@ -33,17 +34,20 @@
     NSURLConnection     *httpConn;
     NSMutableData       *imageData;
     NSMutableDictionary *comicImageCache;
+    TWTweetComposeViewController *tweetComposeViewController;
 }
 
 @property (weak, nonatomic) IBOutlet UIImageView *comicView;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UILabel *comicPubDateUILabel;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (weak, nonatomic) IBOutlet UIButton *shareOnTwitterButton;
 
 @property (weak, nonatomic) NSString *comicTag;
 @property (weak, nonatomic) NSString *comicNameText;
 @property (weak, nonatomic) NSString *comicPubDateText;
 
+- (IBAction)shareOnTwitterTapped:(id)sender;
 - (void)gotComicData: (NSData *)comicJsonData;
 - (void)showComicFromCache: (NSString *)comicId;
 
