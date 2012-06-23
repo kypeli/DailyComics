@@ -22,7 +22,7 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="FullscreenComicGrid" Grid.Row="1" Margin="12,0,12,0" VerticalAlignment="Center" HorizontalAlignment="Center">
             <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1" VerticalContentAlignment="Stretch" VerticalAlignment="Top">
-                <Image x:Name="FullscreenComic" Source="{Binding}" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                <Image x:Name="FullscreenComic" Source="{Binding}" Stretch="UniformToFill" VerticalAlignment="Center" HorizontalAlignment="Center" Tap="FullscreenComic_Tap" />
             </ScrollViewer>
         </Grid>
     </Grid>

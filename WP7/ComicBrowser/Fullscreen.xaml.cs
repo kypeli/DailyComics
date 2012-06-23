@@ -38,5 +38,10 @@ namespace ComicBrowser
 
             base.OnNavigatedTo(e);
         }
+
+        private void FullscreenComic_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }    
