@@ -12,26 +12,26 @@
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="480"
     shell:SystemTray.IsVisible="True">
-	<phone:PhoneApplicationPage.Resources>
-		<Storyboard x:Name="AnimatedTitleText">
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="PageTitle">
-				<EasingDoubleKeyFrame KeyTime="0" Value="8">
-					<EasingDoubleKeyFrame.EasingFunction>
-						<CubicEase EasingMode="EaseOut"/>
-					</EasingDoubleKeyFrame.EasingFunction>
-				</EasingDoubleKeyFrame>
-				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="74.667">
-					<EasingDoubleKeyFrame.EasingFunction>
-						<CubicEase EasingMode="EaseOut"/>
-					</EasingDoubleKeyFrame.EasingFunction>
-				</EasingDoubleKeyFrame>
-			</DoubleAnimationUsingKeyFrames>
-			<DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PageTitle">
-				<EasingDoubleKeyFrame KeyTime="0" Value="0"/>
-				<EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
-			</DoubleAnimationUsingKeyFrames>
-		</Storyboard>
-	</phone:PhoneApplicationPage.Resources>
+    <phone:PhoneApplicationPage.Resources>
+        <Storyboard x:Name="AnimatedTitleText">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBlock.FontSize)" Storyboard.TargetName="PageTitle">
+                <EasingDoubleKeyFrame KeyTime="0" Value="8">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="74.667">
+                    <EasingDoubleKeyFrame.EasingFunction>
+                        <CubicEase EasingMode="EaseOut"/>
+                    </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="PageTitle">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:2" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </phone:PhoneApplicationPage.Resources>
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
@@ -43,9 +43,9 @@
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
             <TextBlock x:Name="PageTitle" Text="Daily Comics" Margin="10" Style="{StaticResource PhoneTextTitle1Style}" TextAlignment="Center" RenderTransformOrigin="0.5,0.5" Foreground="{StaticResource PhoneForegroundBrush}" Opacity="0" Height="104">
-            	<TextBlock.RenderTransform>
-            		<CompositeTransform/>
-            	</TextBlock.RenderTransform>
+                <TextBlock.RenderTransform>
+                    <CompositeTransform/>
+                </TextBlock.RenderTransform>
             </TextBlock>
         </StackPanel>
 
@@ -62,7 +62,7 @@
             </TextBlock>
             <RichTextBox IsReadOnly="True" Margin="29,217,18,341" TextAlignment="Center">
                 <Paragraph  FontSize="20">
-                    <Hyperlink NavigateUri="https://github.com/kypeli/WPDailyComic" TargetName="_blank">https://github.com/kypeli/WPDailyComic</Hyperlink>
+                    <Hyperlink NavigateUri="https://github.com/kypeli/DailyComics" TargetName="_blank">https://github.com/kypeli/DailyComics</Hyperlink>
                 </Paragraph>
             </RichTextBox>
             <RichTextBox IsReadOnly="True" Height="235" HorizontalAlignment="Left" Margin="29,264,0,100" Name="contactText" VerticalAlignment="Center" Width="433" TextAlignment="Center">
