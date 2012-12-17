@@ -49,22 +49,21 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ImageTools">
-      <HintPath>..\..\..\..\..\..\Documents\src\ImageTools 0.30\bin\Phone\ImageTools.dll</HintPath>
+      <HintPath>libs\ImageTools 0.30\bin\Phone\ImageTools.dll</HintPath>
     </Reference>
     <Reference Include="ImageTools.IO.Gif">
-      <HintPath>..\..\..\..\..\..\Documents\src\ImageTools 0.30\bin\Phone\ImageTools.IO.Gif.dll</HintPath>
+      <HintPath>libs\ImageTools 0.30\bin\Phone\ImageTools.IO.Gif.dll</HintPath>
     </Reference>
     <Reference Include="ImageTools.IO.Png">
-      <HintPath>..\..\..\..\..\..\Documents\src\ImageTools 0.30\bin\Phone\ImageTools.IO.Png.dll</HintPath>
+      <HintPath>libs\ImageTools 0.30\bin\Phone\ImageTools.IO.Png.dll</HintPath>
     </Reference>
     <Reference Include="ImageTools.Utils">
-      <HintPath>..\..\..\..\..\..\Documents\src\ImageTools 0.30\bin\Phone\ImageTools.Utils.dll</HintPath>
+      <HintPath>libs\ImageTools 0.30\bin\Phone\ImageTools.Utils.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone" />
     <Reference Include="Microsoft.Phone.Controls, Version=7.0.0.0, Culture=neutral, PublicKeyToken=24eec0d8c86cda1e, processorArchitecture=MSIL" />
-    <Reference Include="Microsoft.Phone.Controls.Toolkit, Version=7.0.0.0, Culture=neutral, PublicKeyToken=b772ad94eb9ca604, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Microsoft SDKs\Windows Phone\v7.1\Toolkit\Oct11\Bin\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
+    <Reference Include="Microsoft.Phone.Controls.Toolkit">
+      <HintPath>libs\SilverlightToolkitWP.4.2011.12.14\lib\sl4-windowsphone71\Microsoft.Phone.Controls.Toolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Phone.Interop" />
     <Reference Include="System" />
