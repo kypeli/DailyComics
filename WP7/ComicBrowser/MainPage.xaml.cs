@@ -164,6 +164,11 @@ namespace ComicBrowser
         private Uri getComicDataUri(int pivotIndex)
         {
             ComicItem model = App.comicListModel.getComicModel(pivotIndex);
+            if (model == null)
+            {
+                return null;
+            }
+
             Uri comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=" + model.ComicId); 
             return comicUri;
         }
@@ -173,6 +178,12 @@ namespace ComicBrowser
             if (RESTError(e))
             {
                 Debug.WriteLine("Error fetching JSON! Error: " + e.Error.ToString());
+                return;
+            }
+
+            if (String.IsNullOrEmpty(e.Result))
+            {
+                Debug.WriteLine("Error: Got no JSON for comic.");
                 return;
             }
 
