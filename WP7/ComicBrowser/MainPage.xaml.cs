@@ -133,6 +133,8 @@ namespace ComicBrowser
                     Debug.WriteLine("Server does not contain the comic anymore. Removing locally: " + localComic.ComicName);
                     App.comicListModel.removeComicItem(localComic);
                 }
+
+                serverComicsEnum.Reset();
             }
 
             // Activate the first comic after the pivots have been populated.
