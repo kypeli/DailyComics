@@ -94,6 +94,7 @@ namespace ComicBrowser.ViewModels
                 // And also immediately to the screen.
                 m_showingComicsListModel.Add(comicItem);
                 m_allComicsListModel.Add(comicItem);
+                OnPropertyChanged("AllComicsListModel");
             }
 
         }
@@ -106,6 +107,21 @@ namespace ComicBrowser.ViewModels
             }
 
             return null;
+        }
+
+        public ComicItem getComicModel(String comicId)
+        {
+            ComicItem c = (from ComicItem item in comicListDb.Items
+                           where item.ComicId == comicId
+                           select item).FirstOrDefault();
+            return c;
+        }
+
+        public void removeComicItem(ComicItem comic)
+        {
+            comicListDb.Items.DeleteOnSubmit(comic);
+            comicListDb.SubmitChanges();
+            refreshComicLists();
         }
 
         public bool modelAlreadyFetched(int pivotIndex)

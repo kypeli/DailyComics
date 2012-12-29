@@ -85,12 +85,12 @@ namespace ComicBrowser
 
             // Process JSON to get interesting data.
             DataContractJsonSerializer jsonparser = new DataContractJsonSerializer(typeof(PivotComicsData));
-            PivotComicsData comics = null;
+            PivotComicsData serverComics = null;
             try
             {
                 byte[] jsonArray = Encoding.UTF8.GetBytes(e.Result);
                 MemoryStream jsonStream = new MemoryStream(jsonArray);
-                comics = (PivotComicsData)jsonparser.ReadObject(jsonStream);
+                serverComics = (PivotComicsData)jsonparser.ReadObject(jsonStream);
             }
             catch (SerializationException)
             {
@@ -99,7 +99,7 @@ namespace ComicBrowser
             }
 
             // Populate the model with comic data. 
-            IEnumerator<ComicInfo> enumerator = comics.comics.GetEnumerator();
+            IEnumerator<ComicInfo> enumerator = serverComics.comics.GetEnumerator();
             while (enumerator.MoveNext())
             {
                 ComicInfo comic = enumerator.Current;
@@ -110,6 +110,29 @@ namespace ComicBrowser
                 Debug.WriteLine("Got comic from server. Name: " + comic.name + ", id: " + comic.comicid);
 
                 App.comicListModel.addComic(model);
+            }
+
+            // Check to see if we have some comic in the DB which is not present on the server. Need to remove that.
+            Collection<ComicItem> comicsInDB = App.comicListModel.AllComicsListModel;
+            IEnumerator<ComicInfo> serverComicsEnum = serverComics.comics.GetEnumerator();
+            foreach (ComicItem localComic in comicsInDB)
+            {
+                bool found = false;
+                while (serverComicsEnum.MoveNext())
+                {
+                    ComicInfo serverComic = serverComicsEnum.Current;
+                    if (localComic.ComicId == serverComic.comicid)
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if (!found) 
+                {
+                    Debug.WriteLine("Server does not contain the comic anymore. Removing locally: " + localComic.ComicName);
+                    App.comicListModel.removeComicItem(localComic);
+                }
             }
 
             // Activate the first comic after the pivots have been populated.
