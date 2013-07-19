@@ -67,7 +67,8 @@ namespace ComicBrowser
 
             WebClient wc = new WebClient();
             wc.DownloadStringCompleted += ComicListFetchCompleted;
-            wc.DownloadStringAsync(new Uri("http://lakka.kapsi.fi:61950/rest/comic/list"));
+//            wc.DownloadStringAsync(new Uri("http://lakka.kapsi.fi:61950/rest/comic/list"));
+            wc.DownloadStringAsync(new Uri("http://scala-comic-server.herokuapp.com/list"));
         }
 
         private void ComicListFetchCompleted(object sender, DownloadStringCompletedEventArgs e)
@@ -194,7 +195,8 @@ namespace ComicBrowser
                 return null;
             }
 
-            Uri comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=" + model.ComicId); 
+            // Uri comicUri = new Uri("http://lakka.kapsi.fi:61950/rest/comic/get?id=" + model.ComicId); 
+            Uri comicUri = new Uri("http://scala-comic-server.herokuapp.com/comic?id=" + model.ComicId); 
             return comicUri;
         }
 
