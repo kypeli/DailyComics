@@ -24,4 +24,6 @@ android {
 
 dependencies {
 	compile 'com.android.support:support-v13:+'
+    compile group: 'com.google.guava', name: 'guava', version: '15.0'
 }
+
