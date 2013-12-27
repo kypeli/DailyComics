@@ -3,14 +3,12 @@ package com.kypeli.dailycomics;
 import java.util.Locale;
 
 import android.app.Activity;
-import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.support.v13.app.FragmentPagerAdapter;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,8 +16,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+import com.kypeli.dailycomics.models.ComicModel;
 
+import rx.Observable;
+import rx.android.concurrency.AndroidSchedulers;
+import rx.concurrency.Schedulers;
+import rx.util.functions.Action1;
+
+public class MainActivity extends Activity {
+    private final String TAG = "MainActivity";
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -49,6 +54,28 @@ public class MainActivity extends Activity {
         // Set up the ViewPager with the sections adapter.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mSectionsPagerAdapter);
+
+        Observable<ComicModel> comicsObservable = ComicManager.getInstance().getComicsObservable();
+        comicsObservable
+                .subscribeOn(Schedulers.threadPoolForIO())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ComicModel>() {
+                    @Override
+                    public void call(ComicModel comicModel) {
+                        Log.d(TAG, "We have a comic: " + comicModel.name);
+                    }
+                });
+
+        Observable<ComicModel> comicDetailsObservable = ComicManager.getInstance().getComicDetails("vw");
+        comicDetailsObservable
+                .subscribeOn(Schedulers.threadPoolForIO())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<ComicModel>() {
+                    @Override
+                    public void call(ComicModel comicModel) {
+                       Log.d(TAG, "Ok, have details too: " + comicModel.name + " " + comicModel.url);
+                    }
+                });
 
     }
 
@@ -147,5 +174,4 @@ public class MainActivity extends Activity {
             return rootView;
         }
     }
-
 }
