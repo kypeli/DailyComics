@@ -11,27 +11,19 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="DC:" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="DEBUG" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="60db2989-a9f1-4aea-9e41-99ee45ed5726" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicListModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ComicManager.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicModel.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/android_async_http_1_4_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_2_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/gson_2_2_4.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jackson_annotations_2_2_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jackson_core_2_2_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/jackson_databind_2_2_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/retrofit_1_3_0.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/rxjava_android_0_15_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/rxjava_core_0_15_1.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ComicView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ImageDownloader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DailyComics/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/DailyComics/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DailyComics/DailyComics.iml" afterPath="$PROJECT_DIR$/DailyComics/DailyComics.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicListModel.java" afterPath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicListModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ComicManager.java" afterPath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ComicManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicModel.java" afterPath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicModel.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/MainActivity.java" afterPath="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/MainActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DailyComics/build.gradle" afterPath="$PROJECT_DIR$/DailyComics/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DailyComics/src/main/res/menu/main.xml" afterPath="$PROJECT_DIR$/DailyComics/src/main/res/menu/main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DailyComics/src/main/res/layout/fragment_main.xml" afterPath="$PROJECT_DIR$/DailyComics/src/main/res/layout/fragment_main.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="gradle.iws" />
@@ -93,7 +85,7 @@
     </breakpoint_any>
     <ui_properties default_suspend_policy="SuspendAll" default_condition_enabled="true" />
     <line_breakpoints>
-      <breakpoint url="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/MainActivity.java" line="75" class="com.kypeli.dailycomics.MainActivity$2" package="com.kypeli.dailycomics">
+      <breakpoint url="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/MainActivity.java" line="140" class="com.kypeli.dailycomics.MainActivity.SectionsPagerAdapter" package="com.kypeli.dailycomics">
         <option name="ENABLED" value="true" />
         <option name="LOG_ENABLED" value="false" />
         <option name="LOG_EXPRESSION_ENABLED" value="false" />
@@ -121,43 +113,41 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ComicManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ComicManager.java">
+      <file leaf-file-name="activity_main.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DailyComics/src/main/res/layout/activity_main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="77" column="0" selection-start="2342" selection-end="2342" vertical-scroll-proportion="0.0" vertical-offset="627" max-vertical-offset="1245">
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1139#1596#0" expanded="true" />
-                <element signature="e#1585#1586#0" expanded="true" />
-                <element signature="e#1750#2085#0" expanded="true" />
-                <element signature="e#2073#2074#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="build.gradle" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/build.gradle">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="105">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="180">
               <folding />
             </state>
           </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/MainActivity.java">
+      <file leaf-file-name="fragment_main.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DailyComics/src/main/res/layout/fragment_main.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="55" column="53" selection-start="1851" selection-end="1851" vertical-scroll-proportion="-0.40151516" vertical-offset="1143" max-vertical-offset="2745">
+            <state line="18" column="0" selection-start="759" selection-end="759" vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="390">
+              <folding>
+                <element signature="e#229#264#0" expanded="true" />
+                <element signature="e#290#325#0" expanded="true" />
+                <element signature="e#349#382#0" expanded="true" />
+                <element signature="e#409#442#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ComicView.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ComicView.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="28" column="41" selection-start="774" selection-end="774" vertical-scroll-proportion="0.68944097" vertical-offset="87" max-vertical-offset="660">
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#2123#2357#0" expanded="true" />
-                <element signature="e#2338#2339#0" expanded="true" />
-                <element signature="e#2643#2904#0" expanded="true" />
-                <element signature="e#2885#2886#0" expanded="true" />
-                <element signature="e#4533#4567#0" expanded="true" />
-                <element signature="e#4635#4669#0" expanded="true" />
-                <element signature="e#4737#4771#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -166,8 +156,54 @@
       <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DailyComics/src/main/AndroidManifest.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="25" column="66" selection-start="914" selection-end="914" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
+            <state line="9" column="0" selection-start="296" selection-end="296" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ComicManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ComicManager.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="38" column="55" selection-start="1103" selection-end="1103" vertical-scroll-proportion="0.0" vertical-offset="494" max-vertical-offset="1275">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1162#1728#0" expanded="true" />
+                <element signature="e#1717#1718#0" expanded="true" />
+                <element signature="e#1882#2257#0" expanded="true" />
+                <element signature="e#2245#2246#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/MainActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="191" column="77" selection-start="7166" selection-end="7166" vertical-scroll-proportion="0.0" vertical-offset="2499" max-vertical-offset="3150">
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1653#1688#0" expanded="true" />
+                <element signature="e#2463#2840#0" expanded="true" />
+                <element signature="e#2812#2813#0" expanded="true" />
+                <element signature="e#2899#3160#0" expanded="true" />
+                <element signature="e#3133#3134#0" expanded="true" />
+                <element signature="e#3223#3459#0" expanded="true" />
+                <element signature="e#3432#3433#0" expanded="true" />
+                <element signature="e#6731#7304#0" expanded="true" />
+                <element signature="e#7281#7282#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageDownloader.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ImageDownloader.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="41" column="0" selection-start="1121" selection-end="1121" vertical-scroll-proportion="0.0" vertical-offset="69" max-vertical-offset="750">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -175,7 +211,7 @@
       <file leaf-file-name="ComicListModel.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicListModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="0" selection-start="170" selection-end="170" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+            <state line="10" column="35" selection-start="196" selection-end="214" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
               <folding />
             </state>
           </provider>
@@ -184,7 +220,7 @@
       <file leaf-file-name="ComicModel.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicModel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="26" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+            <state line="7" column="18" selection-start="148" selection-end="148" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
               <folding />
             </state>
           </provider>
@@ -197,15 +233,6 @@
               <folding>
                 <marker date="1388178292000" expanded="true" signature="370:641" placeholder="{...}" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DailyComics.iml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DailyComics/DailyComics.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="39" selection-end="39" vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="1290">
-              <folding />
             </state>
           </provider>
         </entry>
@@ -579,12 +606,15 @@
         <option value="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/com/kypeli/dailycomics/json/JsonParser.java" />
         <option value="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/com/kypeli/dailycomics/jsonmodel/JsonParser.java" />
         <option value="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/HttpClient.java" />
-        <option value="$PROJECT_DIR$/DailyComics/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/DailyComics/build.gradle" />
-        <option value="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicListModel.java" />
         <option value="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicModel.java" />
-        <option value="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/MainActivity.java" />
+        <option value="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicListModel.java" />
         <option value="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ComicManager.java" />
+        <option value="$PROJECT_DIR$/DailyComics/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/DailyComics/src/main/res/layout/fragment_main.xml" />
+        <option value="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ImageDownloader.java" />
+        <option value="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/MainActivity.java" />
+        <option value="$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ComicView.java" />
       </list>
     </option>
   </component>
@@ -777,6 +807,36 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="res" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="layout" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DailyComics" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="java" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -845,6 +905,9 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="Nexus4" />
+    <property name="DEBUGGABLE_DEVICE" value="041322818291c9fa" />
+    <property name="DEBUGGABLE_PROCESS" value="com.kypeli.dailycomics" />
+    <property name="SHOW_ALL_PROCESSES" value="false" />
   </component>
   <component name="RunManager" selected="Android Application.DailyComics">
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
@@ -1046,21 +1109,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1680" height="940" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3394608" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983193" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2609756" sideWeight="0.67135864" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37682927" sideWeight="0.8488372" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.37682927" sideWeight="0.15116279" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17809057" sideWeight="0.5007342" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17809057" sideWeight="0.5007342" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3292683" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.28414634" sideWeight="0.88004893" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3" sideWeight="0.9088127" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925338" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32983193" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.249694" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1072,7 +1136,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3394608" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1116,40 +1179,9 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="727" />
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/android/app/Activity.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="113" column="29" selection-start="4252" selection-end="4252" vertical-scroll-proportion="0.33333334" vertical-offset="1442" max-vertical-offset="6675" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DailyComics/src/main/res/menu/main.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="36" selection-start="323" selection-end="323" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="225">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/com.netflix.rxjava/rxjava-android/0.15.1/jar/a779ee094bd7ff7bcd6a944538e11d1344aeff8e/rxjava-android-0.15.1.jar!/rx/operators/OperationObserveFromAndroidComponent.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="13" selection-start="155" selection-end="155" vertical-scroll-proportion="-0.59681696" vertical-offset="525" max-vertical-offset="1455">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/artifacts-26/filestore/com.netflix.rxjava/rxjava-android/0.15.1/jar/a779ee094bd7ff7bcd6a944538e11d1344aeff8e/rxjava-android-0.15.1.jar!/rx/android/observables/AndroidObservable.class">
       <provider selected="true" editor-type-id="text-editor">
         <state line="6" column="19" selection-start="171" selection-end="171" vertical-scroll-proportion="0.09778357" vertical-offset="0" max-vertical-offset="767">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DailyComics/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="25" column="66" selection-start="914" selection-end="914" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="495">
           <folding />
         </state>
       </provider>
@@ -1191,45 +1223,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicListModel.java">
+    <entry file="jar://$APPLICATION_HOME_DIR$/sdk/platforms/android-19/android.jar!/java/lang/StringBuilder.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="0" selection-start="170" selection-end="170" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+        <state line="7" column="11" selection-start="303" selection-end="303" vertical-scroll-proportion="0.15544042" vertical-offset="0" max-vertical-offset="1215">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="26" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+        <state line="7" column="18" selection-start="148" selection-end="148" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/models/ComicListModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="35" selection-start="196" selection-end="214" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="315">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ComicManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="77" column="0" selection-start="2342" selection-end="2342" vertical-scroll-proportion="0.0" vertical-offset="627" max-vertical-offset="1245">
+        <state line="38" column="55" selection-start="1103" selection-end="1103" vertical-scroll-proportion="0.0" vertical-offset="494" max-vertical-offset="1275">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1139#1596#0" expanded="true" />
-            <element signature="e#1585#1586#0" expanded="true" />
-            <element signature="e#1750#2085#0" expanded="true" />
-            <element signature="e#2073#2074#0" expanded="true" />
+            <element signature="e#1162#1728#0" expanded="true" />
+            <element signature="e#1717#1718#0" expanded="true" />
+            <element signature="e#1882#2257#0" expanded="true" />
+            <element signature="e#2245#2246#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DailyComics/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="0" selection-start="296" selection-end="296" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="510">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DailyComics/src/main/res/layout/activity_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="552">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DailyComics/src/main/res/layout/fragment_main.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="18" column="0" selection-start="759" selection-end="759" vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="390">
+          <folding>
+            <element signature="e#229#264#0" expanded="true" />
+            <element signature="e#290#325#0" expanded="true" />
+            <element signature="e#349#382#0" expanded="true" />
+            <element signature="e#409#442#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ImageDownloader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="41" column="0" selection-start="1121" selection-end="1121" vertical-scroll-proportion="0.0" vertical-offset="69" max-vertical-offset="750">
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="55" column="53" selection-start="1851" selection-end="1851" vertical-scroll-proportion="-0.40151516" vertical-offset="1143" max-vertical-offset="2745">
+        <state line="191" column="77" selection-start="7166" selection-end="7166" vertical-scroll-proportion="0.0" vertical-offset="2499" max-vertical-offset="3150">
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2123#2357#0" expanded="true" />
-            <element signature="e#2338#2339#0" expanded="true" />
-            <element signature="e#2643#2904#0" expanded="true" />
-            <element signature="e#2885#2886#0" expanded="true" />
-            <element signature="e#4533#4567#0" expanded="true" />
-            <element signature="e#4635#4669#0" expanded="true" />
-            <element signature="e#4737#4771#0" expanded="true" />
+            <element signature="e#1653#1688#0" expanded="true" />
+            <element signature="e#2463#2840#0" expanded="true" />
+            <element signature="e#2812#2813#0" expanded="true" />
+            <element signature="e#2899#3160#0" expanded="true" />
+            <element signature="e#3133#3134#0" expanded="true" />
+            <element signature="e#3223#3459#0" expanded="true" />
+            <element signature="e#3432#3433#0" expanded="true" />
+            <element signature="e#6731#7304#0" expanded="true" />
+            <element signature="e#7281#7282#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DailyComics/src/main/java/com/kypeli/dailycomics/ComicView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="28" column="41" selection-start="774" selection-end="774" vertical-scroll-proportion="0.68944097" vertical-offset="87" max-vertical-offset="660">
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -36,16 +36,17 @@ public class ComicManager {
         return m_instance;
     }
 
-    public Observable<ComicModel> getComicsObservable() {
-        return Observable.create(new Observable.OnSubscribeFunc<ComicModel>() {
+    public Observable<ComicListModel.ComicListModelItem> getComicsObservable() {
+        return Observable.create(new Observable.OnSubscribeFunc<ComicListModel.ComicListModelItem>() {
 
             @Override
-            public Subscription onSubscribe(Observer<? super ComicModel> observer) {
+            public Subscription onSubscribe(Observer<? super ComicListModel.ComicListModelItem> observer) {
                 ComicListModel comics = comicService.getComics();
-                for(ComicModel comic : comics.comics) {
+                for(ComicListModel.ComicListModelItem comic : comics.comics) {
                     observer.onNext(comic);
                 }
                 Log.d(TAG, "Got some comics");
+                observer.onCompleted();
 
                 return Subscriptions.empty();
 
@@ -60,6 +61,7 @@ public class ComicManager {
             public Subscription onSubscribe(Observer<? super ComicModel> observer) {
                 ComicModel model = comicService.getComicDetails(id);
                 observer.onNext(model);
+                observer.onCompleted();
 
                 return Subscriptions.empty();
             }

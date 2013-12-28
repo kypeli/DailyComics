@@ -5,6 +5,6 @@ package com.kypeli.dailycomics.models;
  */
 public class ComicModel {
     public String name;
-    public String comicid;
+    public String id;
     public String url;
 }
